@@ -15,7 +15,7 @@ export class ColorsDirective {
     this.set(this.primary, this.colorAccent);
   }
   ngOnInit(): void {
-    document.querySelector('title').text = 'Localiza';
+    document.querySelector('title').text = 'Vamoretro: Localiza';
     this.set(this.primary, this.colorAccent);
   }
   private set(dom: string, color: string) {
