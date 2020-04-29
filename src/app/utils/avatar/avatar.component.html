@@ -1,0 +1,15 @@
+<div class="media" id="avatar">
+  <div
+    class="media-left initials"
+    [ngClass]="{ darker: dark, larger: lg }"
+    [ngStyle]="{ background: color || '#fff' }"
+  >
+    <span [ngStyle]="{ 'color': color ? '#fff' : '#000' }">{{ getInitials() }}</span>
+  </div>
+  <div class="media-body" *ngIf="full">
+    <div class="media-heading">
+      {{ name }}
+    </div>
+    <span class="small">{{ role }}</span>
+  </div>
+</div>

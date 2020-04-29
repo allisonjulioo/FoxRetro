@@ -1,0 +1,18 @@
+{
+  "locales": [
+    {
+      "id": 1,
+      "key": "login",
+      "en": "Login",
+      "pt": "Entrar",
+      "es": "Inicie sesión"
+    },
+    {
+      "id": 2,
+      "key": "register",
+      "en": "Register",
+      "pt": "Cadastre-se",
+      "es": "Registrarse"
+    }
+  ]
+}

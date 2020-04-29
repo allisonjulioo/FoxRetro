@@ -1,0 +1,15 @@
+<div id="confirm">
+  <img src="./assets/img/alarm.svg" alt="alert confirm" />
+  <p>{{ message }}</p>
+  <div class="center-flex">
+    <button
+      class="btn btn-secondary btn-sm mr-2"
+      (click)="activeModal.close(false)"
+    >
+      Nao
+    </button>
+    <button class="btn btn-light btn-sm" (click)="activeModal.close(true)">
+      Sim
+    </button>
+  </div>
+</div>

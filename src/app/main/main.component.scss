@@ -1,0 +1,8 @@
+@import "../../styles.scss";
+:hostv-main {
+  .todo {
+    @media (max-width: $medium-size) {
+      padding-top: 64px;
+    }
+  }
+}

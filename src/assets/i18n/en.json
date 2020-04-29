@@ -1,0 +1,12 @@
+{
+  "en": {
+    "login": "Login",
+    "register": "Register",
+    "remind": "Forgot password",
+    "eMail": "E-mail",
+    "password": "Password",
+    "loginUsing": "Login using",
+    "dontHaveAccount": "Don't have an account?",
+    "validEmailError": "Enter a valid email address"
+  }
+}

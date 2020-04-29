@@ -1,0 +1,55 @@
+<div class="container-fluid mt-3" id="singleBoards">
+  <section>
+    <div class="center-flex title spaced">
+      <h3>
+        <a class="btn btn-icon btn-link back" routerLink="/main/boards">
+          <i class="material-icons">keyboard_backspace</i></a
+        >
+        <inline-editor
+          [data]="board?.title"
+          (focusOut)="editBoard(board, $event)"
+        ></inline-editor>
+      </h3>
+      <div class="btn-group">
+        <k-button
+          [type]="'secondary'"
+          [customClass]="devices.mobile || devices.tablet ? 'smaller' : ''"
+          [loading]="loading"
+          (click)="addColumn()"
+          *ngIf="board?.columns.length < 4"
+        >
+          <i class="material-icons">add_circle_outline</i>
+          <span>Nova coluna</span>
+        </k-button>
+        <span *ngIf="board?.columns.length >= 4" class="center-flex mr-2">
+          Limite 4 colunas</span
+        >
+        <div
+          class="btn-group"
+          ngbDropdown
+          placement="left-top"
+          display="dynamic"
+          role="group"
+          aria-label="Button group with nested dropdown"
+        >
+          <button
+            class="btn dropdown-toggle-split btn-secondary"
+            [ngClass]="{
+              smaller: devices.mobile || devices.tablet
+            }"
+            ngbDropdownToggle
+          ></button>
+          <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+            <button ngbDropdownItem>Exportar PDF</button>
+            <button ngbDropdownItem>Exportar XLS</button>
+            <button ngbDropdownItem>Apresentar</button>
+            <button ngbDropdownItem (click)="deleteBoard(board)">
+              Excluir board
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <kanban [columns]="board?.columns"></kanban>
+</div>

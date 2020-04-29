@@ -1,0 +1,114 @@
+@import "../../../../styles";
+
+#navheader {
+  padding: 0 20px;
+  height: 60px;
+  @media (max-width: $medium-size) {
+    height: 50px;
+  }
+  &.nav {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: $medium-size) {
+      padding: 0;
+      position: fixed;
+      width: 100%;
+      z-index: +5;
+    }
+    i {
+      font-size: 24px;
+    }
+    &.nav-menu {
+      height: 82px;
+      margin: -24px 0px 0px;
+      display: block;
+      padding: 12px;
+      figure {
+        margin: 0;
+      }
+      section {
+        margin-left: 8px;
+      }
+    }
+    .btn-menu {
+      margin: 0;
+    }
+    .branding {
+      span {
+        color: white;
+        margin-left: 10px;
+        padding: 0px 0 0 12px;
+        border-left: 1px solid white;
+      }
+      img {
+        height: 44px;
+        @media (max-width: $medium-size) {
+          height: 36px;
+        }
+      }
+    }
+    #profile {
+      margin: 0 10px;
+      .btn-notification {
+        margin: 0;
+        @media (max-width: $medium-size) {
+          width: 48px;
+          justify-content: flex-end;
+          margin: 0 15px 0 0;
+        }
+        i {
+          font-size: 24px;
+          color: $white;
+        } 
+      }
+      .btn {
+        @extend .center-flex;
+        min-width: auto;
+        padding: 0 8px 0;
+        &:after {
+          color: $white;
+        }
+        @media (max-width: $medium-size) {
+          padding: 0;
+          &:after {
+            display: none;
+          }
+        }
+        &:hover {
+          background: rgba($white, 0.2);
+          @media (max-width: $medium-size) {
+            background: transparent;
+          }
+        }
+      }
+      strong {
+        color: $white;
+      }
+      span {
+        margin-left: 13px;
+        height: 40px;
+        width: 40px;
+        background: $white;
+        border-radius: $rounded;
+        @extend .center-flex;
+      }
+      &:after {
+        color: $white;
+        margin-left: 20px;
+      }
+      @media (max-width: $medium-size) {
+        margin: 0;
+      }
+    }
+
+    .list-menu {
+      i {
+        font-size: 15px;
+        top: 2px;
+        position: relative;
+        margin-right: 9px;
+      }
+    }
+  }
+}

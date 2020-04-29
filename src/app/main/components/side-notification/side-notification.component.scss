@@ -1,0 +1,63 @@
+@import "../../../../styles";
+
+:hostside-notification {
+  z-index: 11;
+  position: absolute;
+  .backdrop {
+    background: transparent;
+    position: fixed;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0 20px;
+    .btn-close {
+      margin: 0;
+      right: -10px;
+      position: relative;
+    }
+    &.mobile-notification {
+      z-index: +4;
+      box-shadow: $shadow-2;
+      position: fixed;
+      width: 100%;
+      display: block;
+      background: #fff;
+      top: 0;
+      z-index: 12;
+      height: 100%;
+      left: 0;
+      &.isDesktop {
+        max-width: 400px;
+        right: 0;
+        left: auto;
+      }
+      .title {
+        justify-content: space-between;
+      }
+      .notifications {
+        li {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          padding: 16px 8px;
+          border-bottom: 1px solid #f2f2f2;
+          p,
+          strong {
+            margin: 0;
+            font-size: $font-sm;
+          }
+          &:hover {
+            background: rgba($light-grey, 0.2);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import "./colors";
+@import "./behaviors";
+@import "./shadows";
+@import "./typography";
+
+.nav-tabs {
+  position: relative;
+  display: flex;
+  border-bottom: none;
+  .nav-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 0;
+    margin: 0 8px 0;
+    padding-bottom: 4px;
+    .nav-link {
+      padding: 0;
+      background: transparent !important;
+      font-size: $font-md;
+      margin: 0;
+      @media (max-width: 981px) {
+        padding: 0 0 0px;
+      }
+
+      &:hover {
+        border-color: transparent;
+        color: $dark;
+      }
+    }
+
+    &.active {
+      color: $dark;
+      font-weight: bold;
+      color: $secondary;
+      border-color: transparent transparent $secondary transparent;
+      a {
+        color: $secondary;
+        border-color: transparent;
+        &:hover {
+          color: $secondary;
+        }
+      }
+      * {
+        color: $secondary;
+      }
+    }
+  }
+}

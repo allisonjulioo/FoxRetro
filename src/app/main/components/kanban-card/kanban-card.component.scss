@@ -1,0 +1,43 @@
+@import "../../../../styles.scss";
+
+#cards {
+  .card {
+    margin: 12px 0;
+    min-height: 156px;
+    &.deleting {
+      opacity: 0.6;
+      filter: grayscale(4);
+    }
+    .more-menu {
+      position: absolute;
+      right: 0;
+      #card-menu {
+        &:after {
+          display: none;
+        }
+      }
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .content {
+        width: 90%;
+      }
+    }
+  }
+  .footer {
+    margin: 20px 0 -12px;
+    height: $height;
+    .btn-like {
+      margin-right: -12px;
+      color: $grey;
+      &.liked {
+        i {
+          color: #e83855;
+          animation: pulse 1s ease-in infinite;
+        }
+      }
+    }
+  }
+}

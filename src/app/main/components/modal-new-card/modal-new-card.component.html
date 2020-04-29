@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    <strong [ngStyle]="{ color: column.color }">{{ column.title }}</strong>
+  </h4>
+  <button
+    type="button"
+    class="btn btn-icon btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <i class="material-icons">close</i>
+  </button>
+</div>
+<form class="form-group" [formGroup]="newCardForm" (ngSubmit)="saveCard()">
+  <div class="modal-body">
+    <div>
+      <label class="pre-label">
+        <textarea
+          #content
+          placeholder="Comece a escrever"
+          formControlName="content"
+          class="form-control content"
+          (keydown.enter)="saveCard()"
+          [ngClass]="{ 'is-invalid': submited && a.content.errors }"
+        ></textarea>
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer end-flex">
+    <k-button
+      [type]="'secondary smaller'"
+      [loading]="loading"
+      (click)="saveCard()"
+    >
+      Salvar
+    </k-button>
+    <button class="btn btn-light smaller" (click)="activeModal.close(null)">
+      Cancelar
+    </button>
+  </div>
+</form>

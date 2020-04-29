@@ -1,0 +1,41 @@
+@import "../../../../styles";
+
+:hostsingle-board {
+  #singleBoards {
+    .title {
+      .btn {
+        &.back {
+          line-height: 4;
+          margin-left: -12px;
+        }
+      }
+      @media (max-width: $medium-size) {
+        background: $white;
+        margin: -32px -15px 16px;
+        height: 48px;
+        padding: 0 12px;
+        box-shadow: $shadow-1;
+        h3 {
+          color: $primary;
+          font-size: 15px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          margin: 0;
+          a {
+            height: 100%;
+            padding: 0;
+            margin: 5px -10px 0;
+          }
+        }
+      }
+    }
+    .dropdown-toggle-split {
+      @media (max-width: $medium-size) {
+        min-width: auto !important;
+        padding: 0 8px;
+        border: none;
+      }
+    }
+  }
+}

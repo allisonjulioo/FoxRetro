@@ -1,0 +1,38 @@
+<form class="form-group" [formGroup]="remindForm" (ngSubmit)="remind()">
+  <div>
+    <label for="" class="pre-label">
+      <span>Digite o e-mail cadastrado</span>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submited && r.email.errors }"
+      />
+      <div *ngIf="submited && r.email.errors">
+        <p *ngIf="r.email.errors.required" class="text-danger prepend">
+          E-mail obrigatorio
+        </p>
+        <p *ngIf="r.email.errors.email" class="text-danger prepend">
+          Digite um e-mail valido
+        </p>
+      </div>
+    </label>
+    <k-button
+      [customClass]="'w-100 btn-submit'"
+      [type]="'primary'"
+      [disabled]="r.email.errors"
+      [loading]="loading"
+      (click)="remind()"
+    >
+      Recuperar
+    </k-button>
+  </div>
+</form>
+<hr />
+<div>
+  <p>Ja possui uma conta?</p>
+  <a routerLink="/auth/login" class="btn text-primary btn-submit">
+    Entrar
+  </a>
+</div>

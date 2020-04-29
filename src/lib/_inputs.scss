@@ -1,0 +1,56 @@
+@import "./colors";
+@import "./behaviors";
+@import "./shadows";
+@import "./typography";
+
+.form-control {
+  height: $height;
+  width: 100%;
+  border-radius: $radius;
+  border: 1px solid #d4d5d6;
+  padding: 4px 12px;
+  margin-bottom: 0 !important;
+  font-size: $font-md;
+  background: transparent !important;
+  &.is-invalid {
+    border: 1px solid #dc3545;
+  }
+  &:hover {
+    border-color: #6f6f6f;
+  }
+  &:focus {
+    border-color: $secondary;
+    outline: none;
+    box-shadow: $shadow-2;
+  }
+}
+.pre-label {
+  display: block;
+  text-align: left;
+  margin-bottom: 14px;
+  position: relative;
+
+  span {
+    margin-bottom: 4px;
+    color: $black;
+    display: block;
+    font-size: $font-sm;
+  }
+  a {
+    font-size: 11px;
+    margin: 5px 0 14px;
+    display: block;
+    float: right;
+    color: #b3b3b3;
+    position: absolute;
+    right: 12px;
+    top: 33px;
+    &:hover {
+      text-decoration: underline;
+      color: $primary;
+    }
+  }
+  .prepend {
+    font-size: $font-md;
+  }
+}

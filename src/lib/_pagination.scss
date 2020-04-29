@@ -1,0 +1,41 @@
+@import "./behaviors";
+@import "./colors";
+@import "./shadows";
+@import "./typography";
+
+.pagination {
+  margin: 0 auto;
+  .page-item {
+    .page-link {
+      outline: none;
+      border-radius: $radius;
+      color: $black;
+      background: rgba($white, 0.6);
+      border: none;
+      padding: 4px;
+      height: 24px;
+      width: 24px;
+      text-align: center;
+      line-height: 1.27;
+      font-size: $font-md;
+      margin: 0 4px;
+      &:focus {
+        box-shadow: $shadow-1;
+      }
+    }
+    &.active {
+      .page-link {
+        color: $white;
+        box-shadow: $shadow-2;
+        background-color: $secondary;
+        border-color: $secondary;
+      }
+    }
+    &.disabled {
+      opacity: 0.4;
+    }
+  }
+}
+ngb-pagination {
+  margin: 0 auto;
+}

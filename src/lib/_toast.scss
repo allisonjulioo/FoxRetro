@@ -1,0 +1,44 @@
+@import "./colors";
+@import "./shadows";
+@import "./behaviors";
+@import "./typography";
+.toast {
+  background: $white;
+  padding: 0 10px;
+  font-size: $font-md;
+  border: none;
+  box-shadow: $shadow-3;
+  &.success {
+    background: #7fc553;
+    color: $white;
+    i,
+    * {
+      color: $white;
+    }
+  }
+  &.error {
+    background: #e42b3e;
+    color: $white;
+    i,
+    * {
+      color: $white;
+    }
+  }
+  .toast-body {
+    padding: 8px 0.75rem;
+    line-height: 2;
+  }
+  .btn {
+    height: auto;
+    width: auto;
+    margin: 0;
+    i {
+      font-size: 17px;
+      line-height: 0;
+      margin: 0px 0 0 12px;
+      position: relative;
+      top: 2px;
+      right: -9px;
+    }
+  }
+}

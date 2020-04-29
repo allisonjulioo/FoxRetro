@@ -1,0 +1,82 @@
+<div id="kanban">
+  <div class="columns">
+    <ng-container *ngFor="let column of columns">
+      <div
+        *ngIf="devices.desktop ? true : selectedColumn === column"
+        class="column"
+        [ngStyle]="{
+          'border-top-color': column.color,
+          'max-width': widthColumn()
+        }"
+      >
+        <div class="label center-flex spaced">
+          <span>
+            <inline-editor
+              [data]="column.title"
+              [color]="setColor(column)"
+              (focusOut)="editColumn(column, $event)"
+            ></inline-editor>
+            <br />
+            <small class="pl-2">{{ column.cards.length }} cards</small>
+          </span>
+          <div class="center-flex">
+            <button
+              class="btn btn-icon btn-accent btn-color"
+              [(colorPicker)]="column.color"
+              (colorPickerSelect)="editColumn(column, column.title)"
+              [cpPresetColors]="[
+                '#fff',
+                '#000',
+                '#2889e9',
+                '#e920e9',
+                '#fff500',
+                'rgb(236,64,64)'
+              ]"
+            >
+              <img src="./assets/img/picker.png" alt="" width="20" />
+            </button>
+            <button
+              class="btn btn-icon btn-accent btn-delete"
+              (click)="deleteColumn(column)"
+            >
+              <i class="material-icons">delete</i>
+            </button>
+          </div>
+        </div>
+        <kanban-cards
+          [cards]="column.cards"
+          [color]="column.color"
+        ></kanban-cards>
+        <div
+          class="new-card btn"
+          (click)="addNewCard(column)"
+          *ngIf="devices.desktop"
+        >
+          Adcione um card a '<i>{{ column.title }}</i> '
+        </div>
+        <button
+          class="btn btn-icon btn-add btn-white"
+          (click)="addNewCard(column)"
+          *ngIf="!devices.desktop"
+        >
+          <i class="material-icons">add</i>
+        </button>
+      </div>
+    </ng-container>
+    <ul class="center-flex bottom-columns" *ngIf="!devices.desktop">
+      <li
+        class="list-column"
+        *ngFor="let column of columns"
+        (click)="selectColumn(column)"
+        [ngClass]="{ active: selectedColumn === column }"
+        [ngStyle]="{
+          'border-bottom-color': selectedColumn === column ? column.color : '',
+          color: selectedColumn === column ? column.color : ''
+        }"
+      >
+        <i class="material-icons">view_agenda</i>
+        <span> {{ column.title }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

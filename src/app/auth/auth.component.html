@@ -1,0 +1,23 @@
+<div id="auth">
+  <div class="contents">
+    <div class="box-inner">
+      <div class="content">
+        <div class="todo">
+          <h5>{{ i18n.translate(activeRouter) }}</h5>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex internationalization">
+  <button class="btn btn-icon" (click)="i18n.switchLang('pt')">
+    <img height="48" src="./assets/icons/pt.png" alt="" />
+  </button>
+  <button class="btn btn-icon" (click)="i18n.switchLang('en')">
+    <img height="48" src="./assets/icons/en.png" alt="" />
+  </button>
+  <button class="btn btn-icon" (click)="i18n.switchLang('es')">
+    <img height="48" src="./assets/icons/es.png" alt="" />
+  </button>
+</div>

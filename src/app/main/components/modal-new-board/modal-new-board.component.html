@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ board.title ? "Editar Board" : "Novo Board" }}</h4>
+  <button
+    type="button"
+    class="btn btn-icon btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <i class="material-icons">close</i>
+  </button>
+</div>
+<form class="form-group" [formGroup]="boardForm" (ngSubmit)="saveBoard()">
+  <div class="modal-body">
+    <div>
+      <label for="" class="pre-label">
+        <span>Titulo</span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="title"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submited && a.title.errors }"
+        />
+      </label>
+      <label for="" class="pre-label col-md-4 p-0">
+        <span>Quantidade de votos</span>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="user_votes"
+          [ngClass]="{ 'is-invalid': submited && a.user_votes.errors }"
+        />
+      </label>
+      <label for="" class="pre-label">
+        <span>Time</span>
+        <input type="text" class="form-control" />
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer end-flex">
+    <k-button
+      [type]="'secondary smaller'" 
+      [loading]="loading"
+      (click)="saveBoard()"
+    >
+    Salvar
+    </k-button>
+    <button class="btn btn-light smaller" (click)="activeModal.close(null)">
+      Cancelar
+    </button>
+  </div>
+</form>

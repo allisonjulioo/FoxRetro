@@ -1,0 +1,31 @@
+<div class="sub-nav">
+  <div class="container-fluid">
+    <ul role="tablist" class="justify-content-start nav nav-tabs">
+      <li class="nav-item" routerLinkActive="active">
+        <i class="material-icons" *ngIf="!device.desktop">dashboard</i>
+        <a class="nav-link" id="boards" [routerLink]="['/main/boards']"
+          >Meus boards</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <i class="material-icons" *ngIf="!device.desktop">people</i>
+        <a class="nav-link" id="teams" [routerLink]="['/main/teams']"
+          >Meus times</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <i class="material-icons" *ngIf="!device.desktop">bar_chart</i>
+        <a class="nav-link" id="analytics" [routerLink]="['/main/analytics']"
+          >Meus Analitics</a
+        >
+      </li>
+
+      <li class="nav-item" routerLinkActive="active" *ngIf="!device.desktop">
+        <i class="material-icons">person</i>
+        <a class="nav-link" id="profile" [routerLink]="['/main/profile']"
+          >Meu Perfil</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

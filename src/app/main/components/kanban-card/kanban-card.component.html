@@ -1,0 +1,58 @@
+<div class="cards" id="cards">
+  <div
+    class="card"
+    *ngFor="let card of cards"
+    [ngClass]="{ deleting: card.deleting }"
+  >
+    <div
+      class="more-menu"
+      ngbDropdown
+      placement="bottom-right"
+      display="dynamic"
+    >
+      <button class="btn btn-icon" id="card-menu" ngbDropdownToggle>
+        <i class="material-icons">more_vert</i>
+      </button>
+      <div
+        ngbDropdownMenu
+        aria-labelledby="card-menu"
+        class="dropdown-menu dropdown-menu-right"
+      >
+        <button class="dropdown-item" (click)="editCard(card, card.content)">
+          <i class="material-icons">edit</i> Editar
+        </button>
+        <button class="dropdown-item" (click)="deleteCard(card)">
+          <i class="material-icons">delete</i> Excluir
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="content">
+        <inline-editor
+          [data]="card.content"
+          [textarea]="true"
+          (focusOut)="editCard(card, $event)"
+        ></inline-editor>
+      </div>
+      <div class="footer center-flex spaced">
+        <avatar
+          [name]="card.user.name"
+          [full]="true"
+          [role]="card.created_at | date: 'dd MMM - h:mm'"
+          [color]="color"
+        ></avatar>
+        <div class="center-flex">
+          <button
+            class="btn btn-icon center-flex btn-like"
+            (click)="card.likes = card.likes + 1; addLike(card)"
+            [ngClass]="{ liked: card.likes >= 1 }"
+          >
+            <i class="material-icons mr-2">favorite</i>
+          </button>
+          <span> {{ card.likes || 0 }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

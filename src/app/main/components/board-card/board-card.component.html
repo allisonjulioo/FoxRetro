@@ -1,0 +1,94 @@
+<div id="card">
+  <div class="card board" *ngFor="let card of cards" (swipeleft)="onSwipe($event)">
+    <span class="badge badge-primary animated fadeIn" *ngIf="play"
+      >Votando</span
+    >
+    <div class="card-body">
+      <div
+        *ngIf="device.isMobile()"
+        class="more-menu"
+        ngbDropdown
+        placement="bottom-right"
+        display="dynamic"
+      >
+        <button class="btn btn-icon" id="card-menu" ngbDropdownToggle>
+          <i class="material-icons">more_vert</i>
+        </button>
+        <div
+          ngbDropdownMenu
+          aria-labelledby="card-menu"
+          class="dropdown-menu dropdown-menu-right"
+        >
+          <button class="dropdown-item" (click)="onEdit(card)">
+            <i class="material-icons">edit</i> Editar
+          </button>
+          <button class="dropdown-item" (click)="onDelete(card)">
+            <i class="material-icons">delete</i> Excluir
+          </button>
+        </div>
+      </div>
+
+      <div class="media infos">
+        <button class="media-left btn btn-light">
+          <img src="./assets/img/qr-code.png" alt="" width="72" />
+        </button>
+        <div class="media-body">
+          <h3 class="media-heading">{{ card.title }}</h3>
+          <p>
+            <i class="material-icons">date_range</i
+            >{{ card.created_at | date: "dd/MM/yyyy" }}
+          </p>
+          <p>
+            <i class="material-icons">people</i>
+            <span class="badge badge-light">Produto</span>
+            <span class="badge badge-light">Mobile</span>
+          </p>
+        </div>
+      </div>
+      <button class="flex contents btn">
+        <div
+          class="data center-flex"
+          ngbTooltip="copiar link"
+          triggers="mouseenter:mouseleave"
+        >
+          <i class="material-icons mr-2">link</i>
+          <span>{{ baseUrl }}/board/{{ card.id }}</span>
+        </div>
+      </button>
+      <div class="footer d-flex">
+        <div class="actions center-flex" >
+          <a
+            class="btn btn-light mr-2 mini"
+            ngbTooltip="Editar"
+            triggers="mouseenter:mouseleave"
+            (click)="onEdit(card)"
+          >
+            <i class="material-icons">edit</i>
+          </a>
+          <a
+            class="btn btn-light mr-2 mini"
+            ngbTooltip="Excluir"
+            triggers="mouseenter:mouseleave"
+            (click)="onDelete(card)"
+          >
+            <i class="material-icons">delete</i>
+          </a>
+          <a
+            class="btn btn-light mr-2 mini"
+            ngbTooltip="Analytics"
+            triggers="mouseenter:mouseleave"
+            [routerLink]="['/main/analytics']"
+          >
+            <i class="material-icons">show_chart</i>
+          </a>
+        </div>
+        <a
+          class="btn btn-sm btn-secondary center-flex text-white"
+          [routerLink]="['/main/board/' + card.id]"
+        >
+          Visualizar <i class="material-icons text-white">keyboard_arrow_right</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

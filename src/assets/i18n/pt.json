@@ -1,0 +1,12 @@
+{
+  "pt": {
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "remind": "Esqueci minha senha",
+    "eMail": "E-mail",
+    "password": "Senha",
+    "loginUsing": "Login usando",
+    "dontHaveAccount": "Nao possui uma conta?",
+    "validEmailError": " Por favor digite um e-mail valido"
+  }
+}

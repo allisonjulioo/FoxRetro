@@ -1,0 +1,12 @@
+{
+  "es": {
+    "login": "Inicie sesión",
+    "register": "Registrarse",
+    "remind": "Olvide mi contraseña",
+    "eMail": "Correo electrónico",
+    "password": "Contraseña",
+    "loginUsing": "Inicie sesión usando",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "validEmailError": "Por favor ingrese un correo electrónico válido"
+  }
+}

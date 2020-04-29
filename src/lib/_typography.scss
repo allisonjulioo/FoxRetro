@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300,300i,400&display=swap");
+@import "./colors";
+
+$font-family: "Lato", sans-serif;
+$font-xs: 10px;
+$font-sm: 12px;
+$font-md: 13px;
+$font-lg: 17px;
+$font-xg: 25px;
+
+$weigth-bold: 600;
+$weigth-normal: 300;
+.text-danger {
+  color: #e42b3e !important;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $black;
+}

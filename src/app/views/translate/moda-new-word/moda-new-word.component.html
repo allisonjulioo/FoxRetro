@@ -1,0 +1,76 @@
+<div class="modal-header">
+  <h4 class="modal-title">Adicionar palavra</h4>
+  <button
+    type="button"
+    class="btn btn-icon btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <i class="material-icons">close</i>
+  </button>
+</div>
+<form class="form-group" [formGroup]="wordForm" (ngSubmit)="saveLanguage()">
+  <div class="modal-body">
+    <label for="" class="pre-label">
+      <span>Chave</span>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="key"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submited && a.key.errors }"
+      />
+    </label>
+    <strong>Traduçoes</strong> 
+    <div class="mt-2">
+      <label for="" class="pre-label">
+        <span
+          ><img src="./assets/icons/pt.png" width="10" alt="" /> Portugues</span
+        >
+        <input
+          type="text"
+          class="form-control"
+          formControlName="pt"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submited && a.pt.errors }"
+        />
+      </label>
+      <label for="" class="pre-label">
+        <span
+          ><img src="./assets/icons/en.png" width="10" alt="" /> English</span
+        >
+        <input
+          type="text"
+          class="form-control"
+          formControlName="en"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submited && a.en.errors }"
+        />
+      </label>
+      <label for="" class="pre-label">
+        <span
+          ><img src="./assets/icons/es.png" width="10" alt="" /> Spanish</span
+        >
+        <input
+          type="text"
+          class="form-control"
+          formControlName="es"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submited && a.es.errors }"
+        />
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer end-flex">
+    <k-button
+      [type]="'secondary smaller'"
+      [loading]="loading"
+      (click)="saveLanguage()"
+    >
+      Salvar
+    </k-button>
+    <button class="btn btn-light smaller" (click)="activeModal.close(null)">
+      Cancelar
+    </button>
+  </div>
+</form>

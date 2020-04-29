@@ -1,0 +1,45 @@
+@import "../../../styles.scss";
+
+#avatar {
+  @extend .center-flex;
+  .initials {
+    border-radius: $rounded;
+    height: 30px;
+    width: 30px;
+    background: $primary;
+    text-align: center;
+    line-height: 2.5;
+    font-size: $font-sm;
+    margin-right: 7px;
+    text-transform: uppercase;
+    span {
+      color: $white;
+    }
+    &.darker {
+      background: $white;
+    }
+    &.larger {
+      height: 40px;
+      width: 40px;
+      line-height: 3.2;
+
+      @media (max-width: 981px) {
+        height: 36px;
+        width: 36px;
+        line-height: 2.8;
+      }
+    }
+  }
+  .media-body {
+    .media-heading {
+      margin-bottom: -8px;
+      font-size: $font-md;
+      color: $dark;
+      font-weight: weigth-bold;
+    }
+    .small {
+      font-weight: $weigth-normal;
+      font-size: $font-sm;
+    }
+  }
+}

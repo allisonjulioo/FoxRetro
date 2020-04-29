@@ -1,0 +1,44 @@
+@import "../../../../styles.scss";
+
+:hostlogin {
+  width: 100%;
+  .content {
+    max-width: 450px;
+    width: 100%;
+    background: $white;
+    padding: 40px 24px;
+    border-radius: $radius-slim;
+    @media (max-width: 981px) {
+      min-height: 100vh;
+      top: 0;
+    }
+    @extend .center-flex;
+    .todo {
+      width: 90%;
+      text-align: center;
+      @media (max-width: 981px) {
+        width: 100%;
+      }
+    }
+    .login-social {
+      .social {
+        @media (max-width: 981px) {
+          width: 100%;
+        }
+        img {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    h5 {
+      color: $black;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    p {
+      font-size: $font-sm;
+      margin: 0;
+    }
+  }
+}

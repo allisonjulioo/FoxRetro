@@ -1,0 +1,38 @@
+<ul
+  class="mobile-notification animated  faster"
+  *ngIf="isOpened$"
+  [ngClass]="{
+    'isDesktop fadeInRight': device$.desktop,
+    'isMobile fadeInUp': !device$.desktop
+  }"
+>
+  <div class="title center-flex">
+    <strong>Notificaçoes (3)</strong>
+    <button class="btn btn-icon btn-close" (click)="closeMenu()">
+      <i class="material-icons">close</i>
+    </button>
+  </div>
+  <section class="notifications">
+    <li
+      class="media"
+      *ngFor="let notification of [0, 1, 02, 0]"
+      (click)="closeMenu()"
+    >
+      <avatar
+        [name]="'Allison'"
+        [color]="'#0095ff'"
+        class="media-left"
+      ></avatar>
+      <div class="media-body ml-2">
+        <strong>Lorems iasdaldkas asdsad</strong>
+        <p>17horas atras</p>
+      </div>
+    </li>
+  </section>
+</ul>
+<div
+  id="backdropMenu"
+  class="backdrop animated fadeIn"
+  *ngIf="isOpened$"
+  (click)="closeMenu()"
+></div>

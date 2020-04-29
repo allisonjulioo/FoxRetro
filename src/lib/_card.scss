@@ -1,0 +1,12 @@
+@import "./shadows";
+@import "./behaviors";
+@import "./colors";
+
+.card {
+  box-shadow: $shadow-1;
+  border: 1px solid $grey;
+  border-radius: $radius-slim; 
+  .card-body {
+    padding: 1.25rem;
+  }
+}

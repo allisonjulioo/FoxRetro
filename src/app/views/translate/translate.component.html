@@ -1,0 +1,51 @@
+<nav class="navbar navbar-dark bg-primary center-flex spaced">
+  <h4 class="navbar-brand">Vamo retro translate</h4>
+  <button class="btn btn-icon m-0" routerLink="/auth/login">
+    <i class="material-icons text-white">close</i>
+  </button>
+</nav>
+<div class="container">
+  <div class="title center-flex spaced">
+    <h4>Lista de idiomas</h4>
+    <button class="btn btn-primary" (click)="addNewWord()">Nova palavra</button>
+  </div>
+  <div class="pt-2 pb-4">
+    <search></search>
+  </div>
+  <div class="contents">
+    <div class="box-inner">
+      <div class="content center-flex spaced tables">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Chave</th>
+              <th scope="col">Portugues</th>
+              <th scope="col">English</th>
+              <th scope="col">Espanol</th>
+              <th scope="col">Aç~oes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let local of locales">
+              <td scope="row">
+                {{ local.key }}
+              </td>
+              <td scope="row">
+                <inline-editor [data]="local.pt"></inline-editor>
+              </td>
+              <td scope="row">
+                <inline-editor [data]="local.en"></inline-editor>
+              </td>
+              <td scope="row">
+                <inline-editor [data]="local.es"></inline-editor>
+              </td>
+              <td scope="row">
+                <button class=" "><i class="material-icons">delete</i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+@import "../../../../styles";
+
+:hostboard-card {
+  #card {
+    @extend .flex;
+    flex-wrap: wrap;
+    @media (max-width: $medium-size) {
+      height: 64vh;
+      margin-bottom: 7px;
+      overflow: auto;
+    }
+    .card {
+      max-width: 280px;
+      min-width: 280px;
+      margin: 12px;
+      @media (max-width: 981px) {
+        max-width: 100%;
+        margin: 12px 0;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+      .infos {
+        .btn {
+          padding: 0;
+          min-width: auto;
+          height: auto;
+        }
+        .media-body {
+          margin-left: 12px;
+          h3 {
+            word-break: break-all;
+            font-size: $font-lg;
+          }
+          p {
+            color: #a0a0a0;
+            font-size: $font-sm;
+            margin: 0;
+            i {
+              margin-left: 4px;
+            }
+            * {
+              color: #a0a0a0;
+              font-size: $font-sm;
+            }
+          }
+        }
+      }
+      .contents {
+        @extend .flex;
+        padding: 12px 0;
+        .data {
+          padding: 4px;
+          &:hover {
+            background: #e8e8e8;
+            span {
+              color: $dark;
+            }
+          }
+        }
+        span {
+          display: block;
+        }
+        small {
+          padding-left: 3px;
+        }
+      }
+      .footer {
+        @extend .flex;
+        justify-content: space-between;
+        .btn {
+          padding: 0;
+          &.mini {
+            @extend .btn-sm;
+            min-width: 32px !important;
+            line-height: 2.6;
+          }
+        }
+      }
+    }
+  }
+}

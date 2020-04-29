@@ -1,0 +1,52 @@
+<nav class="nav" id="navheader" primary="background">
+  <button
+    *ngIf="device$.mobile"
+    class="btn btn-icon btn-menu"
+    style="height: auto;"
+    (click)="openMenu()"
+  >
+    <i class="material-icons text-white" *ngIf="!isOpened$">menu</i>
+    <i class="material-icons text-white" *ngIf="isOpened$">close</i>
+  </button>
+  <figure class="center-flex branding m-0">
+    <img src="./assets/img/localiza.png" alt="" />
+    <span *ngIf="!device$.mobile">Retrospective</span>
+  </figure>
+
+  <side-menu [user]="user"> </side-menu>
+  <side-notification [user]="user"> </side-notification>
+
+  <section class="nav-item d-flex" id="profile">
+    <button class="btn btn-notification btn-icon" (click)="openNotification()">
+      <i class="material-icons">notifications</i>
+    </button>
+
+    <section
+      ngbDropdown
+      placement="bottom-right"
+      display="dynamic"
+      *ngIf="!device$.mobile"
+    >
+      <button class="btn btn-tertiary" ngbDropdownToggle>
+        <avatar [dark]="true" [lg]="true" [name]="user.name"> </avatar>
+      </button>
+      <div
+        ngbDropdownMenu
+        aria-labelledby="profile"
+        class="list-menu dropdown-menu dropdown-menu-right"
+      >
+        <button ngbDropdownItem [routerLink]="['/main/profile']">
+          <i class="material-icons">person</i>Perfil
+        </button>
+        <button
+          ngbDropdownItem
+          (click)="logout()"
+          routerLinkActive="router-link-active"
+        >
+          <i class="material-icons">logout</i>Sair
+        </button>
+      </div>
+    </section>
+  </section>
+</nav>
+<sub-nav *ngIf="!isKanban"></sub-nav>

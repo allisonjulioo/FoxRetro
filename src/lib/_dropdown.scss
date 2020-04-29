@@ -1,0 +1,42 @@
+@import "./colors";
+@import "./shadows";
+
+.dropdown-menu {
+  width: 100%;
+  box-shadow: $shadow-3;
+  margin-top: 1px;
+  border-radius: $radius-slim;
+  border: 1px solid $grey;
+  animation: fadeIn 0.4s ease-in-out;
+  * {
+    height: 48px;
+    line-height: 2.4;
+    font-size: $font-md;
+    @media (max-width: 981px) {
+      height: 36px;
+      line-height: 2;
+    }
+  }
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: $white;
+  text-decoration: none;
+  background-color: $primary;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  outline: none;
+  color: $black;
+  text-decoration: none;
+  background-color: $grey;
+}
+
+.btn-group > .btn-group:not(:first-child) > .btn,
+.btn-group > .btn:not(:first-child) {
+  border-left-color: $white !important;
+}
+.dropdown-toggle-split {
+  min-width: auto;
+}

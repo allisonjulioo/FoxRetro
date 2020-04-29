@@ -1,0 +1,26 @@
+<span
+  *ngIf="!editMode"
+  (click)="onFocusIn()"
+  class="cell"
+  [ngStyle]="{ color: color }"
+>
+  {{ data }}
+</span>
+<input
+  #cellInput
+  *ngIf="editMode && !textarea"
+  (focusout)="onFocusOut(); editMode = false"
+  (keydown.enter)="$event.target.blur()"
+  [(ngModel)]="data"
+  class="cellInput"
+  type="text"
+/>
+
+<textarea
+  #cellInput
+  *ngIf="editMode && textarea"
+  (focusout)="onFocusOut(); editMode = false"
+  (keydown.enter)="$event.target.blur()"
+  [(ngModel)]="data"
+  class="cellInput textarea"
+></textarea>

@@ -1,0 +1,14 @@
+@import "./colors";
+@import "./behaviors";
+@import "./shadows";
+@import "./typography";
+
+.alert {
+  border-color: transparent;
+  font-size: $font-md;
+  border-radius: $radius;
+}
+.alert-danger {
+  color: $danger !important;
+  background-color: #f8d7da;
+}

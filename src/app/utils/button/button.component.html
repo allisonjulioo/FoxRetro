@@ -1,0 +1,21 @@
+<button
+  class="btn btn-global"
+  [ngClass]="[
+    customClass,
+    'btn-' + type,
+    loading || disabled ? 'disabled' : ''
+  ]"
+  [disabled]="loading || disabled"
+>
+  <img src="./assets/img/loading.svg" width="60" class="spin" *ngIf="loading" />
+  <span
+    *ngIf="!loading"
+    class="center-flex"
+    [ngStyle]="{
+      'user-select': disabled ? 'none': '',
+      'pointer-events': disabled ? 'none' : ''
+    }"
+  >
+    <ng-content> </ng-content>
+  </span>
+</button>

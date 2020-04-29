@@ -1,0 +1,67 @@
+@import "../../../../styles.scss";
+
+:hostsub-nav {
+  @media (max-width: $medium-size) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 0;
+    border-top: 1px solid #dedede;
+  }
+  .sub-nav {
+    height: 52px;
+    background: $white;
+    box-shadow: $shadow-1;
+    margin-bottom: 36px;
+    @extend .flex;
+    align-items: flex-end;
+    .nav-tabs {
+      align-items: center;
+      width: 100%;
+      .nav-item {
+        padding: 0;
+        display: flex;
+        opacity: .7;
+        .nav-link {
+          margin: 0; 
+        }
+        &.active { 
+          opacity: 1;
+        }
+      }
+    }
+    @media (max-width: $medium-size) {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      box-shadow: $shadow-2;
+      .container-fluid {
+        padding: 0;
+        justify-content: center;
+        display: flex;
+      }
+      .nav-tabs {
+        align-items: center;
+        width: 100%;
+        .nav-item {
+          text-align: center;
+          line-height: 0;
+          flex: 1;
+          display: block;
+          border: none; 
+          &.active {
+            .nav-link {
+              color: $primary;
+            }
+          }
+          .nav-link { 
+            margin: 0;
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+}
