@@ -6,7 +6,6 @@ import { BoardsService } from './../../../services/boards/boards.service';
 import { ToastService } from 'src/app/services/toasts/toasts.service';
 import { Boards } from 'src/app/models/boards/boards';
 import { first } from 'rxjs/operators';
-import { AuthService } from './../../../services/auth/auth.service';
 import { Devices } from 'src/app/models/devices/devices';
 import { Store, select } from '@ngrx/store';
 
@@ -20,6 +19,8 @@ export class BoardsComponent implements OnInit {
   public page: Number = 1;
   public cards: Array<Boards> = [];
   public devices: Devices;
+  public attempt: number = 0;
+  public loading: boolean = true;
   public modalOptions: Object =
     {
       windowClass: 'animated fadeIn faster',
@@ -32,23 +33,33 @@ export class BoardsComponent implements OnInit {
     public toastService: ToastService,
     private boardService: BoardsService,
     private toast: ToastService,
-    private authService: AuthService,
-    private store: Store<{ resposive: {} }>, ) { }
+    private store: Store<{ responsive: {} }>, ) { }
 
 
   ngOnInit(): void {
     this.getBoards();
-    this.store.pipe(select('resposive'))
+    this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => {
         this.devices = devices;
       })
     //console.log(this.authService.currentUserValue)
   };
-  private getBoards() {
-    this.boardService.getAll()
-      .subscribe(cards => {
-        this.cards = cards
-      })
+
+  public reloadBoards() {
+    this.attempt = 0;
+    this.getBoards();
+  }
+  private async getBoards(): Promise<void> {
+    this.cards = await this.boardService.getAll().toPromise();
+    this.loading = this.cards.length == 0;
+    if (!this.cards.length && this.attempt <= 2) {
+      setTimeout(() => {
+        this.getBoards();
+        this.attempt++;
+      }, 3000);
+    } else {
+      this.loading = false;
+    }
   }
   public editBoard(board) {
     this.openModalBoard(board)

@@ -14,6 +14,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { SearchModule } from './../utils/search/search.module';
 import { InlineEditorModule } from '../utils/inline-editor/inline-editor.module';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartjsModule } from 'ng-chartjs';
 
 import { environment } from '../../environments/environment';
 import { DeviceDetectorService } from 'ngx-device-detector';
@@ -60,6 +61,7 @@ import { ProfileComponent } from './views/profile/profile.component';
     AvatarModule,
     BrowserModule,
     ConfirmModule,
+    NgChartjsModule,
     ToastsModule,
     SearchModule,
     ButtonModule,

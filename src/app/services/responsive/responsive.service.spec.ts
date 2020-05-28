@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ResposiveService } from './resposive.service';
+import { ResponsiveService } from './responsive.service';
 
-describe('ResposiveService', () => {
-  let service: ResposiveService;
+describe('ResponsiveService', () => {
+  let service: ResponsiveService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ResposiveService);
+    service = TestBed.inject(ResponsiveService);
   });
 
   it('should be created', () => {

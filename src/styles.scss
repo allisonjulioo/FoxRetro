@@ -27,7 +27,7 @@ html {
 }
 body {
   overflow-x: hidden;
-  background: #f8f9fd;
+  background: $white;
   @media (max-width: 981px) {
     padding-bottom: 100px;
     overflow: hidden;

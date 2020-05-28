@@ -1,13 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Store } from '@ngrx/store';
-import { resposive } from 'src/app/store/actions/screen.actions';
+import { responsive } from 'src/app/store/actions/screen.actions';
 import { Devices } from 'src/app/models/devices/devices';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResposiveService implements OnInit {
+export class ResponsiveService implements OnInit {
   public devices: Devices = {
     mobile: this.device.isMobile(),
     tablet: this.device.isTablet(),
@@ -43,7 +43,7 @@ export class ResposiveService implements OnInit {
         break;
     }
     this.device.setDeviceInfo(window.navigator.userAgent);
-    this.store.dispatch(resposive(
+    this.store.dispatch(responsive(
       this.devices
     ))
   }

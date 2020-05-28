@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ResposiveService } from './services/responsive/resposive.service';
 import * as Hammer from 'hammerjs';
+import { ResponsiveService } from './services/responsive/responsive.service';
 import { Store, select } from '@ngrx/store';
 import { menu } from './store/actions/sideMenu.actions';
 import { Devices } from './models/devices/devices';
@@ -17,13 +17,13 @@ import { Devices } from './models/devices/devices';
 export class AppComponent {
   device: Devices;
   constructor(
-    private resposive: ResposiveService,
-    public store: Store<{ resposive: Object, menu: boolean }>
+    private responsive: ResponsiveService,
+    public store: Store<{ responsive: Object, menu: boolean }>
   ) {
 
   }
   ngOnInit(): void {
-    this.store.pipe(select('resposive'))
+    this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => this.device = devices)
 
     const element = document.getElementById('triggerMenu');
@@ -33,6 +33,6 @@ export class AppComponent {
   }
 
   private onResize() {
-    this.resposive.getWidth()
+    this.responsive.getWidth()
   }
 }

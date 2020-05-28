@@ -31,7 +31,7 @@ export class SingleBoardComponent implements OnInit {
   constructor(
     private boardService: BoardsService,
     private route: ActivatedRoute,
-    private store: Store<{ update: number, resposive: {} }>,
+    private store: Store<{ update: number, responsive: {} }>,
     private toast: ToastService,
     private router: Router,
     private confirm: ConfirmService,
@@ -42,7 +42,7 @@ export class SingleBoardComponent implements OnInit {
       .subscribe(res => {
         this.getColumns(this.boardId);
       })
-    this.store.pipe(select('resposive'))
+    this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => {
         this.devices = devices;
       })

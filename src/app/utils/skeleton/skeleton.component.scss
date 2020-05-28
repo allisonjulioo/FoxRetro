@@ -13,6 +13,18 @@
       box-shadow: none;
       background: transparent;
       border: none;
+      @media (max-width: $medium-size) {
+        width: 100%;
+        min-width: 100%;
+        margin: 0;
+      }
+      .card-body {
+        @media (max-width: $medium-size) {
+          margin-left: 0;
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
     }
   }
   .post {

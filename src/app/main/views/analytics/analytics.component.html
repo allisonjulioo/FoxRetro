@@ -2,11 +2,11 @@
   <section>
     <div class="center-flex title spaced block-mobile">
       <h3>Analitcs</h3>
-      <button class="btn icon floating" primary="background">
-        <i class="material-icons">add_circle_outline</i>
-        <span>Nova perspectiva</span>
-      </button>
-    </div>
-    <skeleton [qnt]="3"></skeleton>
+      <span>Perspectiva</span>
+    </div> 
+    <canvas ngChartjs [datasets]="lineChartData" [labels]="lineChartLabels"
+          [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"
+          [inlinePlugins]="inlinePlugin">
+  </canvas>
   </section>
 </div>

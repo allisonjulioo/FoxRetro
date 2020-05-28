@@ -10,10 +10,10 @@ import { Store, select } from '@ngrx/store';
 export class SubNavComponent implements OnInit {
   device: Devices;
   bg: string;
-  constructor(private store: Store<{ resposive: Object, menu: boolean }>) {}
+  constructor(private store: Store<{ responsive: Object, menu: boolean }>) {}
 
   ngOnInit(): void {
-    this.store.pipe(select('resposive'))
+    this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => {
         this.device = devices;
         if (this.device.mobile || this.device.tablet) {

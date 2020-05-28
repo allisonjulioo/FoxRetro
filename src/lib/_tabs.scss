@@ -31,17 +31,17 @@
     &.active {
       color: $dark;
       font-weight: bold;
-      color: $secondary;
-      border-color: transparent transparent $secondary transparent;
+      color: $primary;
+      border-color: transparent transparent $primary transparent;
       a {
-        color: $secondary;
+        color: $primary;
         border-color: transparent;
         &:hover {
-          color: $secondary;
+          color: $primary;
         }
       }
       * {
-        color: $secondary;
+        color: $primary;
       }
     }
   }

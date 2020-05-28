@@ -17,12 +17,12 @@ export class SideNotificationComponent implements OnInit {
   constructor(
     private store: Store<{
       notification: boolean,
-      resposive: Devices,
+      responsive: Devices,
     }>
   ) { }
 
   ngOnInit(): void {
-    this.store.pipe(select('resposive'))
+    this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => {
         this.device$ = devices;
       })

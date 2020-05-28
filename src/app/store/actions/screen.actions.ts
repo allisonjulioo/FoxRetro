@@ -3,7 +3,7 @@ import { createAction, props } from '@ngrx/store'
 enum ActionTypes {
   Device = 'DEVICE',
 }
-export const resposive = createAction(
+export const responsive = createAction(
   ActionTypes.Device,
   props<{
     mobile: boolean,

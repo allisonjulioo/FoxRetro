@@ -30,11 +30,11 @@ export class KanbanComponent implements OnInit {
     private modalService: NgbModal,
     private confirm: ConfirmService,
     private route: ActivatedRoute,
-    private store: Store<{ resposive: {} }>,
+    private store: Store<{ responsive: {} }>,
     private columnService: ColumnsService) { }
 
   ngOnInit(): void {
-    this.store.pipe(select('resposive'))
+    this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => {
         this.devices = devices;
       })

@@ -30,7 +30,7 @@ export class NavHeaderComponent implements OnInit {
     private userService: UserService,
     private store: Store<
       {
-        resposive: Object,
+        responsive: Object,
         menu: boolean,
         notification: boolean,
       }>
@@ -50,7 +50,7 @@ export class NavHeaderComponent implements OnInit {
       .subscribe(user => this.user = user)
 
 
-    this.store.pipe(select('resposive'))
+    this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => {
         this.device$ = devices;
       })

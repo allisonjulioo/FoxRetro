@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class ColorsDirective {
   @Input() primary: string;
-  colorAccent: string = '#00974a'
+  colorAccent: string = '#456881'
   constructor(private el: ElementRef) {
   }
   @HostListener('mouseenter') onMouseEnter() {
@@ -15,7 +15,7 @@ export class ColorsDirective {
     this.set(this.primary, this.colorAccent);
   }
   ngOnInit(): void {
-    document.querySelector('title').text = 'Vamoretro: Localiza';
+    document.querySelector('title').text = 'Vamoretro';
     this.set(this.primary, this.colorAccent);
   }
   private set(dom: string, color: string) {

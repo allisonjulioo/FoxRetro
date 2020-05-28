@@ -22,7 +22,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
 import { reducer as update } from './store/reducer/updateColumn.reducer';
-import { reducer as resposive } from './store/reducer/screen.reducer';
+import { reducer as responsive } from './store/reducer/screen.reducer';
 import { reducer as menu } from './store/reducer/sideMenu.reducer';
 import { reducer as notification } from './store/reducer/notifications.reducer';
 
@@ -58,7 +58,7 @@ import { SearchModule } from './utils/search/search.module';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     StoreModule.forRoot({
       update,
-      resposive,
+      responsive,
       menu,
       notification
     }),

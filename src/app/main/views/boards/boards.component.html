@@ -15,7 +15,13 @@
         <span></span>
       </button>
     </div>
-    <skeleton [qnt]="3" *ngIf="!cards.length"></skeleton>
+    <skeleton [qnt]="3" *ngIf="loading"></skeleton>
+
+    <div class="empty" *ngIf="!loading && !cards.length" (click)="reloadBoards()">
+      <img src="./assets/img/404.png" alt="Sem nada" >
+      <p>Parece que não há nada por aqui!</p>
+      <k-button customClass="btn-sm" type="secondary">Tentar novamente</k-button>
+    </div>
     <!--card -->
     <board-card
       [cards]="cards"
