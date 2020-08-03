@@ -18,10 +18,10 @@
         class="form-control"
         formControlName="key"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submited && a.key.errors }"
+        [ngClass]="{ 'is-invalid': submitted && a.key.errors }"
       />
     </label>
-    <strong>Traduçoes</strong> 
+    <strong>Traduçoes</strong>
     <div class="mt-2">
       <label for="" class="pre-label">
         <span
@@ -32,7 +32,7 @@
           class="form-control"
           formControlName="pt"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submited && a.pt.errors }"
+          [ngClass]="{ 'is-invalid': submitted && a.pt.errors }"
         />
       </label>
       <label for="" class="pre-label">
@@ -44,7 +44,7 @@
           class="form-control"
           formControlName="en"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submited && a.en.errors }"
+          [ngClass]="{ 'is-invalid': submitted && a.en.errors }"
         />
       </label>
       <label for="" class="pre-label">
@@ -56,7 +56,7 @@
           class="form-control"
           formControlName="es"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submited && a.es.errors }"
+          [ngClass]="{ 'is-invalid': submitted && a.es.errors }"
         />
       </label>
     </div>

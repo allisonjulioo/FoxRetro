@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ModalNewWordComponent } from './moda-new-word.component';
 
+import { ModalNewTeamComponent } from './modal-new-team.component';
 
-describe('ModalNewWordComponent', () => {
-  let component: ModalNewWordComponent;
-  let fixture: ComponentFixture<ModalNewWordComponent>;
+describe('ModalNewTeamComponent', () => {
+  let component: ModalNewTeamComponent;
+  let fixture: ComponentFixture<ModalNewTeamComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalNewWordComponent ]
+      declarations: [ ModalNewTeamComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalNewWordComponent);
+    fixture = TestBed.createComponent(ModalNewTeamComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

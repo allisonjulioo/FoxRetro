@@ -4,12 +4,14 @@
 @import "./typography";
 .toast {
   background: $white;
-  padding: 0 10px;
+  padding: 10px;
   font-size: $font-md;
+  border-radius: 0;
   border: none;
   box-shadow: $shadow-3;
+  min-width: 240px;
   &.success {
-    background: #7fc553;
+    background: $secondary;
     color: $white;
     i,
     * {
@@ -17,7 +19,7 @@
     }
   }
   &.error {
-    background: #e42b3e;
+    background: $danger;
     color: $white;
     i,
     * {
@@ -26,19 +28,28 @@
   }
   .toast-body {
     padding: 8px 0.75rem;
-    line-height: 2;
+    line-height: 1.4;
   }
   .btn {
     height: auto;
     width: auto;
     margin: 0;
+    position: absolute;
+    top: 4px;
+    right: 8px;
     i {
-      font-size: 17px;
+      opacity: 0.4;
+      font-size: 16px;
       line-height: 0;
       margin: 0px 0 0 12px;
       position: relative;
       top: 2px;
-      right: -9px;
+      right: 2px;
+    }
+    &:hover {
+      i {
+        opacity: 1;
+      }
     }
   }
 }

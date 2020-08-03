@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { BoardsService } from './../../../services/boards/boards.service';
-import { ToastService } from './../../../services/toasts/toasts.service';
 import { first } from 'rxjs/operators';
 import { CardsService } from './../../../services/cards/cards.service';
+import { ToastService } from './../../../services/toasts/toasts.service';
 
 
 @Component({
@@ -16,8 +15,8 @@ export class ModalNewCardComponent implements OnInit {
   @Input() column;
   @ViewChild('content', { static: false }) content: ElementRef;
   newCardForm: FormGroup;
-  loading: Boolean = false;
-  submited: Boolean = false;
+  loading: boolean;
+  submitted: boolean;
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
@@ -31,12 +30,10 @@ export class ModalNewCardComponent implements OnInit {
       content: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
-  ngAfterViewInit() {
-    this.content.nativeElement.focus();
-  }
+
 
   public saveCard() {
-    this.loading = this.submited = true;
+    this.loading = this.submitted = true;
     if (this.newCardForm.invalid) {
       this.loading = false;
       return;
@@ -52,8 +49,10 @@ export class ModalNewCardComponent implements OnInit {
     this.toast.show(message, {
       delay: 2500,
       autohide: true,
-      type: type
-    })
+      type
+    });
   }
-
+  ngAfterViewInit() {
+    this.content.nativeElement.focus();
+  }
 }

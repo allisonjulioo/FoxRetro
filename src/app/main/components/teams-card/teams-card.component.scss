@@ -1,6 +1,6 @@
 @import "../../../../styles";
 
-:hostboard-card {
+:hostteams-card {
   #card {
     @extend .flex;
     flex-wrap: wrap;
@@ -22,6 +22,12 @@
           padding: 0;
           min-width: auto;
           height: auto;
+          img {
+            height: 72px;
+            object-fit: cover;
+            width: 100%;
+            max-width: 72px;
+          }
         }
         .media-body {
           margin-left: 12px;

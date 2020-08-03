@@ -11,9 +11,8 @@
     right: 20px;
   }
   .contents {
-    @extend .center-flex; // styleGuide/behaviors
-    //background: rgba($primary, 0.2) url("../../assets/img/businnes.jpg");
-    background: $primary;
+    @extend .center-flex;
+    background: $white;
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: soft-light;
@@ -21,16 +20,14 @@
     height: 100%;
   }
   .box-inner {
-    max-width: 500px;
+    max-width: 1024px;
     width: 100%;
     height: 100%;
     position: relative;
     @extend .center-flex;
   }
   .content {
-    max-width: 450px;
     width: 100%;
-    background: $white;
     padding: 40px 24px;
     border-radius: $radius-slim;
     @media (max-width: 981px) {
@@ -39,13 +36,13 @@
     }
     @extend .center-flex;
     .todo {
-      width: 90%;
+      width: 75%;
       text-align: center;
       @media (max-width: 981px) {
         width: 100%;
       }
     }
-    .login-social {
+    .action-buttons {
       .social {
         @media (max-width: 981px) {
           width: 100%;
@@ -57,8 +54,9 @@
     }
 
     h5 {
+      text-align: left;
+      font-size: 4em;
       color: $black;
-      font-weight: 600;
       margin-bottom: 32px;
     }
     p {

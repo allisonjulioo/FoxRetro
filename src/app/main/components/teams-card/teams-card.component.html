@@ -4,16 +4,16 @@
     *ngFor="let card of cards"
     (swipeleft)="onSwipe($event)"
   >
+    <span class="badge badge-primary animated fadeIn" *ngIf="play"
+      >Votando</span
+    >
     <button
-      class="btn btn-icon mini favorite active"
+      class="btn btn-icon mini favorite"
       ngbTooltip="Favorite"
       triggers="mouseenter:mouseleave"
     >
       <i class="material-icons">favorite</i>
     </button>
-    <span class="badge badge-primary animated fadeIn" *ngIf="play"
-      >Votando</span
-    >
     <div class="card-body">
       <div
         *ngIf="device.isMobile()"
@@ -41,7 +41,11 @@
 
       <div class="media infos">
         <button class="media-left btn btn-light">
-          <img src="./assets/img/qr-code.png" alt="" width="72" />
+          <img
+            [src]="card.logo || './assets/img/default-logo.png'"
+            alt=""
+            width="72"
+          />
         </button>
         <div class="media-body">
           <h3 class="media-heading">{{ card.title }}</h3>
@@ -49,9 +53,20 @@
             <i class="material-icons">date_range</i
             >{{ card.created_at | date: "dd/MM/yyyy" }}
           </p>
-          <p class="badge badge-light" *ngIf="card.team">
-            <i class="material-icons">people</i>
-            <span>{{ card.team.title }}</span>
+          <p
+            class="badge"
+            [ngClass]="card.current_user_id ? 'badge-light' : 'badge-primary'"
+          >
+            <i
+              class="material-icons"
+              [ngClass]="card.current_user_id ? '' : 'text-white white'"
+              >{{ card.current_user_id ? "person" : "people" }}
+            </i>
+            <span
+              class=""
+              [ngClass]="card.current_user_id ? '' : 'text-white white'"
+              >{{ card.user.name }}</span
+            >
           </p>
         </div>
       </div>
@@ -66,7 +81,17 @@
         </div>
       </button>
       <div class="footer d-flex">
-        <div class="actions center-flex">
+        <div class="actions center-flex" *ngIf="!card.current_user_id">
+          <a
+            class="btn btn-light mr-2 mini"
+            ngbTooltip="Sair do time"
+            triggers="mouseenter:mouseleave"
+            (click)="onEdit(card)"
+          >
+            <i class="material-icons">exit_to_app</i>
+          </a>
+        </div>
+        <div class="actions center-flex" *ngIf="card.current_user_id">
           <a
             class="btn btn-light mr-2 mini"
             ngbTooltip="Editar"
@@ -97,7 +122,6 @@
           [routerLink]="['/main/board/' + card.id]"
         >
           Visualizar
-          <i class="material-icons text-white">keyboard_arrow_right</i>
         </a>
       </div>
     </div>

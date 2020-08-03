@@ -1,39 +1,38 @@
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastsModule } from './utils/toasts/toasts.module';
-import { AuthModule } from './auth/auth.module';
-import { ConfirmModule } from './utils/confirm/confirm.module';
-import { MainModule } from './main/main.module';
-import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { ButtonModule } from './utils/button/button.module';
-import { SkeletonModule } from './utils/skeleton/skeleton.module';
-import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbAlertModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
-import { InlineEditorModule } from './utils/inline-editor/inline-editor.module';
-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
-
-import { reducer as update } from './store/reducer/updateColumn.reducer';
+import { CookieService } from 'ngx-cookie-service';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
+import { BoardsPipe } from './filters/boards.pipe';
+import { MainModule } from './main/main.module';
+import { ErrorInterceptor } from './services/auth/error.interceptor';
+import { JwtInterceptor } from './services/auth/jwt.interceptor';
+import { reducer as notification } from './store/reducer/notifications.reducer';
 import { reducer as responsive } from './store/reducer/screen.reducer';
 import { reducer as menu } from './store/reducer/sideMenu.reducer';
-import { reducer as notification } from './store/reducer/notifications.reducer';
-
-import { AppComponent } from './app.component';
-import { JwtInterceptor } from './services/auth/jwt.interceptor';
-import { ErrorInterceptor } from './services/auth/error.interceptor';
-import { DeviceDetectorModule } from 'ngx-device-detector';
-import { BoardsPipe } from './filters/boards.pipe';
-import { TranslateComponent } from './views/translate/translate.component';
-import { ModaNewWordComponent } from './views/translate/moda-new-word/moda-new-word.component';
+import { reducer as update } from './store/reducer/updateColumn.reducer';
+import { ButtonModule } from './utils/button/button.module';
+import { ConfirmModule } from './utils/confirm/confirm.module';
+import { InlineEditorModule } from './utils/inline-editor/inline-editor.module';
 import { SearchModule } from './utils/search/search.module';
+import { SkeletonModule } from './utils/skeleton/skeleton.module';
+import { ToastsModule } from './utils/toasts/toasts.module';
+import { ModalNewWordComponent } from './views/translate/moda-new-word/moda-new-word.component';
+import { TranslateComponent } from './views/translate/translate.component';
+
+
+
 
 
 @NgModule({
@@ -41,7 +40,7 @@ import { SearchModule } from './utils/search/search.module';
     AppComponent,
     BoardsPipe,
     TranslateComponent,
-    ModaNewWordComponent,
+    ModalNewWordComponent,
   ],
   imports: [
     AuthModule,

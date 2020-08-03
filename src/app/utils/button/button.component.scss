@@ -3,14 +3,9 @@
 .btn-global {
   @extend .center-flex;
   .spin {
-    margin-right: 4px;
-    margin-top: -10px;
     animation: rotate 1s linear infinite;
   }
   &.smaller {
-    .spin {
-      margin-top: -18px;
-    }
   }
   &.disabled {
     user-select: none;

@@ -1,0 +1,8 @@
+.badge {
+  display: inline-flex;
+  border-radius: $radius;
+  font-weight: normal;
+  i {
+    margin: 0 4px 0 0;
+  }
+}

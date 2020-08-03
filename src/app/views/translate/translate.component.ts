@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { I18nService } from './../../services/i18n/i18n.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModaNewWordComponent } from './moda-new-word/moda-new-word.component';
+import { I18nService } from './../../services/i18n/i18n.service';
+import { ModalNewWordComponent } from './moda-new-word/moda-new-word.component';
 
 @Component({
   selector: 'translate',
@@ -42,7 +42,7 @@ export class TranslateComponent implements OnInit {
   public addNewWord() {
     console.log('res');
 
-    const modalRef = this.modalService.open(ModaNewWordComponent, { windowClass: 'animated fadeIn fasted' });
+    const modalRef = this.modalService.open(ModalNewWordComponent, { windowClass: 'animated fadeIn fasted' });
     modalRef.result.then((result) => {
       if (result.id) {
 

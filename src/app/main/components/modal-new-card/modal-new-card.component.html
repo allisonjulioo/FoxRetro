@@ -21,7 +21,7 @@
           formControlName="content"
           class="form-control content"
           (keydown.enter)="saveCard()"
-          [ngClass]="{ 'is-invalid': submited && a.content.errors }"
+          [ngClass]="{ 'is-invalid': submitted && a.content.errors }"
         ></textarea>
       </label>
     </div>

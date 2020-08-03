@@ -1,15 +1,22 @@
+<ngb-alert
+  type="danger"
+  class="flipInX animated"
+  [dismissible]="false"
+  *ngIf="r.email.errors"
+  >E-mail não cadastrado</ngb-alert
+>
 <form class="form-group" [formGroup]="remindForm" (ngSubmit)="remind()">
   <div>
-    <label for="" class="pre-label">
+    <label for="" class="pre-label" *ngIf="!isSentCode && !isCodeCorrect">
       <span>Digite o e-mail cadastrado</span>
       <input
         type="email"
         class="form-control"
         formControlName="email"
         class="form-control"
-        [ngClass]="{ 'is-invalid': submited && r.email.errors }"
+        [ngClass]="{ 'is-invalid animated shake': submitted && r.email.errors }"
       />
-      <div *ngIf="submited && r.email.errors">
+      <div *ngIf="submitted && r.email.errors">
         <p *ngIf="r.email.errors.required" class="text-danger prepend">
           E-mail obrigatorio
         </p>
@@ -18,14 +25,96 @@
         </p>
       </div>
     </label>
+
+    <!-- code; -->
+    <label
+      for=""
+      class="pre-label code animated fadeIn"
+      *ngIf="isSentCode && !isCodeCorrect"
+    >
+      <span>Digite o código para o e-mail {{ r.email.value }}</span>
+      <input
+        type="text"
+        [maxlength]="4"
+        minlength="1"
+        placeholder="- - - -"
+        class="form-control font-lg"
+        formControlName="code"
+        class="form-control"
+        [ngClass]="{ 'is-invalid animated shake': submitted && r.code.errors }"
+      />
+      <div *ngIf="submitted && r.code.errors">
+        <p *ngIf="r.code.errors.required" class="text-danger prepend">
+          Código obrigatório
+        </p>
+        <p *ngIf="r.code.errors.code" class="text-danger prepend">
+          Esse código não é válido
+        </p>
+      </div>
+    </label>
+
+    <!-- Password; -->
+    <section *ngIf="!isSentCode && isCodeCorrect">
+      <ngb-alert type="success" class="flipInX animated" [dismissible]="false"
+        >Digite sua nova senha</ngb-alert
+      >
+      <label for="" class="pre-label">
+        <span>Nova senha</span>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          name="password"
+          [ngClass]="{
+            'is-invalid animated shake': submitted && r.password.errors
+          }"
+        />
+        <div *ngIf="submitted && r.password.errors">
+          <p *ngIf="r.password.errors.required" class="text-danger prepend">
+            Nova senha obrigatoria
+          </p>
+          <p *ngIf="r.password.errors.minlength" class="text-danger prepend">
+            Minimo de 6 caracteres
+          </p>
+        </div>
+      </label>
+      <label for="" class="pre-label">
+        <span>Repita a nova senha</span>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="confirmPassword"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid animated shake': submitted && r.confirmPassword.errors
+          }"
+        />
+        <div
+          *ngIf="submitted && r.confirmPassword.errors"
+          class="invalid-feedback"
+        >
+          <p
+            *ngIf="r.confirmPassword.errors.required"
+            class="text-danger prepend"
+          >
+            Confirmaçao de senha obrigatoria
+          </p>
+          <p
+            *ngIf="r.confirmPassword.errors.mustMatch"
+            class="text-danger prepend"
+          >
+            Senhas nao conferem
+          </p>
+        </div>
+      </label>
+    </section>
+
     <k-button
       [customClass]="'w-100 btn-submit'"
       [type]="'primary'"
-      [disabled]="r.email.errors"
       [loading]="loading"
-      (click)="remind()"
     >
-      Recuperar
+      Enviar
     </k-button>
   </div>
 </form>

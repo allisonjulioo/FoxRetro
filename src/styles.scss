@@ -5,6 +5,7 @@ $material-icons-font-path: "~material-icons/iconfont/";
 
 @import "./lib/animate";
 @import "./lib/alerts";
+@import "./lib/badge";
 @import "./lib/behaviors";
 @import "./lib/btn";
 @import "./lib/card";
@@ -27,7 +28,7 @@ html {
 }
 body {
   overflow-x: hidden;
-  background: $white;
+  background: #fcfbfe;
   @media (max-width: 981px) {
     padding-bottom: 100px;
     overflow: hidden;

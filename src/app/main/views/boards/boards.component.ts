@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { select, Store } from '@ngrx/store';
+import { first } from 'rxjs/operators';
+import { Boards } from 'src/app/models/boards/boards';
+import { Devices } from 'src/app/models/devices/devices';
 import { ConfirmService } from 'src/app/services/confirm/confirm.service';
+import { ToastService } from 'src/app/services/toasts/toasts.service';
 import { ModalNewBoardComponent } from '../../components/modal-new-board/modal-new-board.component';
 import { BoardsService } from './../../../services/boards/boards.service';
-import { ToastService } from 'src/app/services/toasts/toasts.service';
-import { Boards } from 'src/app/models/boards/boards';
-import { first } from 'rxjs/operators';
-import { Devices } from 'src/app/models/devices/devices';
-import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'boards',
@@ -16,12 +16,12 @@ import { Store, select } from '@ngrx/store';
   styleUrls: ['./boards.component.scss']
 })
 export class BoardsComponent implements OnInit {
-  public page: Number = 1;
-  public cards: Array<Boards> = [];
+  public page = 1;
+  public cards: Boards[] = [];
   public devices: Devices;
-  public attempt: number = 0;
-  public loading: boolean = true;
-  public modalOptions: Object =
+  public attempt = 0;
+  public loading = true;
+  public modalOptions =
     {
       windowClass: 'animated fadeIn faster',
       backdropClass: 'modal-primary-backdrop',
@@ -33,7 +33,7 @@ export class BoardsComponent implements OnInit {
     public toastService: ToastService,
     private boardService: BoardsService,
     private toast: ToastService,
-    private store: Store<{ responsive: {} }>, ) { }
+    private store: Store<{ responsive: {} }>) { }
 
 
   ngOnInit(): void {
@@ -41,9 +41,8 @@ export class BoardsComponent implements OnInit {
     this.store.pipe(select('responsive'))
       .subscribe((devices: Devices) => {
         this.devices = devices;
-      })
-    //console.log(this.authService.currentUserValue)
-  };
+      });
+  }
 
   public reloadBoards() {
     this.attempt = 0;
@@ -51,7 +50,7 @@ export class BoardsComponent implements OnInit {
   }
   private async getBoards(): Promise<void> {
     this.cards = await this.boardService.getAll().toPromise();
-    this.loading = this.cards.length == 0;
+    this.loading = this.cards.length === 0;
     if (!this.cards.length && this.attempt <= 2) {
       setTimeout(() => {
         this.getBoards();
@@ -61,39 +60,39 @@ export class BoardsComponent implements OnInit {
       this.loading = false;
     }
   }
-  public editBoard(board) {
-    this.openModalBoard(board)
-  };
-  public deleteBoard(board) {
+  public editBoard(board?: Boards) {
+    this.openModalBoard(board);
+  }
+  public deleteBoard(board: Boards) {
     this.confirm.open(`Deseja excluir o board ${board.title}?`)
       .then((evt) => {
         if (evt) {
           this.boardService.delete(board.id)
             .pipe(first())
-            .subscribe(() => this.onSubmited('success', 'Board excluido'))
+            .subscribe(() => this.onSubmitted('success', 'Board excluido'));
         }
       });
-  };
-  private onSubmited(type: string, message: string) {
+  }
+  private onSubmitted(type: string, message: string) {
     this.toast.show(message, {
       delay: 2500,
       autohide: true,
-      type: type
-    })
+      type
+    });
     this.getBoards();
   }
-  public openModalBoard(board) {
+  public openModalBoard(board?: Boards) {
     const modalRef = this.modalService.open(ModalNewBoardComponent, this.modalOptions);
     modalRef.componentInstance.board = board;
     modalRef.result.then((result) => {
       if (result.id) {
         this.boardService.update(result)
           .pipe(first())
-          .subscribe(res => this.onSubmited('success', 'Board atualizado'))
+          .subscribe(res => this.onSubmitted('success', 'Board atualizado'));
       }
       this.getBoards();
     })
-      .catch(err => console.log(err))
-  };
+      .catch(err => console.log(err));
+  }
 
 }

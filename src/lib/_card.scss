@@ -3,10 +3,29 @@
 @import "./colors";
 
 .card {
+  position: relative;
   box-shadow: $shadow-1;
   border: 1px solid $grey;
-  border-radius: $radius-slim; 
+  border-radius: $radius-slim;
+  margin: 16px 12px;
+  max-width: 300px;
+  min-width: 300px;
+  margin-left: 0;
+  margin-top: 0;
   .card-body {
     padding: 1.25rem;
+  }
+
+  .favorite {
+    position: absolute;
+    right: 0;
+    i {
+      color: $grey;
+    }
+    &.active {
+      i {
+        color: $primary;
+      }
+    }
   }
 }

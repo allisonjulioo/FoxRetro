@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from './../../../environments/environment';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { User } from './../../models/user/user';
+import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from './../../../environments/environment';
+import { User } from './../../models/user/user';
+import { Auth } from './auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
+  };
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -25,19 +26,25 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  public login(data) {
-    const cookie = this.cookie.check('utok');
-    return this.http.post<User>(`${environment.apiUrl}/auth`, { ...data })
+  public login(data: Auth): Observable<Auth> {
+    return this.http.post<Auth & User>(`${environment.apiUrl}/users/auth`, { ...data })
       .pipe(map(user => {
-        this.cookie.set('utok', user.token, 3600)
+        this.cookie.set('utok', user.token, 3600);
         this.currentUserSubject.next(user);
         return user;
       }));
   }
+  public register(user: User): Observable<Auth> {
+    return this.http.post<Auth>(`${environment.apiUrl}/users/new`, { ...user })
+      .pipe(map((data: Auth) => data));
+  }
+  public remind(email: string): Observable<Auth> {
+    return this.http.post<Auth>(`${environment.apiUrl}/users/remind`, { email })
+      .pipe(map((data: Auth) => data));
+  }
 
   public logout() {
-    // remove user from local storage and set current user to null
-    this.cookie.delete('utok')
+    this.cookie.delete('utok');
     this.currentUserSubject.next(null);
     localStorage.clear();
   }

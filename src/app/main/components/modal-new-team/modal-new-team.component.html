@@ -1,7 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">
-    {{ board?.title ? "Editar Board" : "Novo Board" }}
-  </h4>
+  <h4 class="modal-title">{{ team?.title ? "Editar Time" : "Novo Time" }}</h4>
   <button
     type="button"
     class="btn btn-icon btn-close"
@@ -11,7 +9,7 @@
     <i class="material-icons">close</i>
   </button>
 </div>
-<form class="form-group" [formGroup]="boardForm" (ngSubmit)="saveBoard()">
+<form class="form-group" [formGroup]="teamForm">
   <div class="modal-body">
     <div>
       <label for="" class="pre-label">
@@ -24,24 +22,24 @@
           [ngClass]="{ 'is-invalid': submitted && a.title.errors }"
         />
       </label>
-      <label for="" class="pre-label col-md-4 p-0">
-        <span>Quantidade de votos</span>
-        <input
+      <label for="" class="pre-label p-0">
+        <span>Descrição</span>
+        <textarea
           type="text"
-          minlength="1"
           class="form-control"
-          formControlName="user_votes"
-          [ngClass]="{ 'is-invalid': submitted && a.user_votes.errors }"
-        />
+          formControlName="description"
+          [ngClass]="{ 'is-invalid': submitted && a.description.errors }"
+        ></textarea>
       </label>
       <label for="" class="pre-label">
-        <span>Time</span>
-        <select name="" id="" class="form-control" formControlName="team_id">
-          <option value="Pessoal">Pessoal</option>
-          <option [value]="team.id" *ngFor="let team of teams">{{
-            team.title
-          }}</option>
-        </select>
+        <span>Titulo</span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="logo"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && a.logo.errors }"
+        />
       </label>
     </div>
   </div>
@@ -49,7 +47,7 @@
     <k-button
       [type]="'primary smaller'"
       [loading]="loading"
-      (click)="saveBoard()"
+      (click)="saveTeam()"
     >
       Salvar
     </k-button>

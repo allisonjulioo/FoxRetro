@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://api-sympla-retro.herokuapp.com/api",
+  apiUrl: "http://localhost:8000/api",
   translateUrl: "http://localhost:3030",
 };
 
@@ -16,3 +16,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+

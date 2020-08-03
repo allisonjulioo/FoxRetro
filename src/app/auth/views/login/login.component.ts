@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from './../../../services/auth/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { first } from 'rxjs/operators';
-import { I18nService } from './../../../services/i18n/i18n.service';
 import { ToastService } from '../../../services/toasts/toasts.service';
+import { AuthService } from './../../../services/auth/auth.service';
+import { I18nService } from './../../../services/i18n/i18n.service';
 
 @Component({
   selector: 'login',
@@ -15,11 +15,11 @@ import { ToastService } from '../../../services/toasts/toasts.service';
 export class LoginComponent implements OnInit {
   @ViewChildren('password') pass: QueryList<any>;
 
-  submited: Boolean = false;
-  loading: Boolean = false;
-  loginForm: FormGroup;
-  registerForm: FormGroup;
-  lang: 'en'
+  public submitted: boolean;
+  public loading: boolean;
+  public loginForm: FormGroup;
+  public registerForm: FormGroup;
+  public lang: 'es';
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   get a() { return this.loginForm.controls; }
 
   public auth() {
-    this.loading = this.submited = true;
+    this.loading = this.submitted = true;
     if (this.loginForm.invalid) {
       this.loading = false;
       return;
@@ -47,18 +47,18 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value)
       .pipe(first())
       .subscribe(data => {
-        this.logged(data)
+        this.logged(data);
       },
         error => {
-          const pass = this.loginForm.controls['password'];
-          pass.setErrors({ 'incorrect': true })
+          const pass = this.loginForm.controls.password;
+          pass.setErrors({ incorrect: true });
           this.pass.last.nativeElement.focus();
           this.pass.last.nativeElement.value = '';
           this.toast.show('Login ou senha incorretos', {
             delay: 2500,
             autohide: true,
             type: 'error'
-          })
+          });
           this.loading = false;
         });
 
@@ -66,9 +66,9 @@ export class LoginComponent implements OnInit {
   public logged(res) {
     const { user_id, token } = res;
     this.loading = false;
-    this.cookie.set('utok', token, 3600)
-    this.cookie.set('uid', user_id, 3600)
-    this.router.navigate(['/main/boards'])
+    this.cookie.set('utok', token, 3600);
+    this.cookie.set('uid', user_id, 3600);
+    this.router.navigate(['/main/boards']);
   }
 
   public facebookAuth() {

@@ -1,6 +1,7 @@
 @import "../../../../styles.scss";
 
 :hostlogin {
+  animation: fadeIn 1s ease-in;
   width: 100%;
   .content {
     max-width: 450px;
@@ -20,7 +21,7 @@
         width: 100%;
       }
     }
-    .login-social {
+    .action-buttons {
       .social {
         @media (max-width: 981px) {
           width: 100%;

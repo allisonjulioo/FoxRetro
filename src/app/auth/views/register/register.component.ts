@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { CookieService } from 'ngx-cookie-service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { first } from 'rxjs/operators';
+import { Auth } from 'src/app/services/auth/auth';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ToastService } from 'src/app/services/toasts/toasts.service';
 import { MustMatch } from '../../_helpers/must-match.validator';
 
@@ -12,9 +14,9 @@ import { MustMatch } from '../../_helpers/must-match.validator';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  login: Boolean = true;
-  submited: Boolean = false;
-  loading: Boolean = false;
+  login: boolean;
+  submitted: boolean;
+  loading: boolean;
   loginForm: FormGroup;
   registerForm: FormGroup;
 
@@ -27,10 +29,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      name: ['Allison Julio', Validators.required],
+      email: ['allison.julio@hotmail.com', [Validators.required, Validators.email]],
+      password: ['121212julio', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['121212julio', Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
@@ -39,10 +41,47 @@ export class RegisterComponent implements OnInit {
   get r() { return this.registerForm.controls; }
 
   public register() {
-    this.submited = true;
+    this.submitted = this.loading = true;
     if (this.r.email.errors && this.r.password.errors) {
+      this.submitted = true;
+      this.loading = false;
       return;
     }
+    this.authService.register(this.registerForm.value)
+      .subscribe(response => {
+        if (response.isValid) {
+          this.toast.show('Cadastro realizado com sucesso', {
+            delay: 3000,
+            autohide: true,
+            type: 'success'
+          });
+          this.loginAfterRegister(this.registerForm.value);
+        }
+        this.loading = false;
+      }, (error) => {
+        const email = this.registerForm.controls.email;
+        email.setErrors({ incorrect: true });
+        this.toast.show(error, {
+          delay: 5000,
+          autohide: true,
+          type: 'error'
+        });
+        this.submitted = true;
+        this.loading = false;
+      });
+  }
+
+  private loginAfterRegister({ email, password }: Auth) {
+    this.authService.login({ email, password })
+      .pipe(first())
+      .subscribe((user) => {
+        const { user_id, token } = user;
+        this.loading = false;
+        this.cookie.set('utok', token, 3600);
+        this.cookie.set('uid', user_id, 3600);
+        this.router.navigate(['/main/boards']);
+      },
+        error => { });
   }
 
 }

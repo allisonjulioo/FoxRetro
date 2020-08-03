@@ -4,7 +4,8 @@
       <search></search>
       <button
         primary="background"
-        class="btn" 
+        class="btn"
+        (click)="openModalTeam(null)"
         [ngClass]="[devices.desktop ? 'icon floating' : 'btn-icon btn-add']"
       >
         <i class="material-icons text-white m-0">{{
@@ -14,19 +15,22 @@
         <span></span>
       </button>
     </div>
-    <!-- <skeleton [qnt]="3" *ngIf="loading"></skeleton> -->
+    <skeleton [qnt]="3" *ngIf="loading"></skeleton>
 
-    <div class="empty" >
-      <img src="./assets/img/team.png" alt="Sem nada" >
+    <div class="empty" *ngIf="!loading && !cards.length">
+      <img src="./assets/img/team.png" alt="Sem nada" />
       <p>Você não tem times cadastrados ou não conseguimos carrega-los</p>
-      <k-button customClass="btn-sm" type="secondary">Tentar novamente</k-button>
+      <k-button customClass="btn-sm" type="secondary" (click)="getTeams()"
+        >Tentar novamente</k-button
+      >
     </div>
-    <!--card 
-    <board-card
-      [cards]="cards"
-      (edit)="editBoard($event)"
-      (delete)="deleteBoard($event)"
-    ></board-card>-->
+    <section *ngIf="!loading">
+      <teams-card
+        [cards]="cards"
+        (edit)="editTeam($event)"
+        (delete)="deleteTeam($event)"
+      ></teams-card>
+    </section>
   </section>
   <ngb-pagination
     [collectionSize]="10"

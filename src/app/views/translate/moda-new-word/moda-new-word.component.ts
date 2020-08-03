@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BoardsService } from 'src/app/services/boards/boards.service';
 import { ToastService } from 'src/app/services/toasts/toasts.service';
 import { I18nService } from './../../../services/i18n/i18n.service';
@@ -10,10 +10,10 @@ import { I18nService } from './../../../services/i18n/i18n.service';
   templateUrl: './moda-new-word.component.html',
   styleUrls: ['./moda-new-word.component.scss']
 })
-export class ModaNewWordComponent implements OnInit {
+export class ModalNewWordComponent implements OnInit {
   wordForm: FormGroup;
-  loading: Boolean = false;
-  submited: Boolean = false;
+  loading: boolean;
+  submitted: boolean;
   get a() { return this.wordForm.controls; }
 
   constructor(
@@ -34,7 +34,7 @@ export class ModaNewWordComponent implements OnInit {
     });
   }
   public saveLanguage() {
-    const key = this.wordForm.value['key']
+    const key = this.wordForm.value.key;
     this.i18n.langs.forEach((e) => {
       this.i18n.create({ [key]: this.wordForm.value[e] }, e)
         .subscribe(() => {
