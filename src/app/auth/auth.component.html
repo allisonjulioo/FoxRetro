@@ -1,5 +1,5 @@
 <div id="auth">
-  <div class="contents">
+  <div class="contents" [ngClass]="{ 'mt-4': !devices.desktop }">
     <div class="box-inner">
       <div class="content">
         <div class="todo">
@@ -7,7 +7,7 @@
           <router-outlet></router-outlet>
         </div>
       </div>
-      <img src="./assets/img/login.png" alt="" />
+      <img src="./assets/img/login.png" alt="" *ngIf="devices.desktop" />
     </div>
   </div>
 </div>
