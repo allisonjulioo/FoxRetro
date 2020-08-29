@@ -6,9 +6,9 @@ import { ToastService } from 'src/app/services/toasts/toasts.service';
 import { MustMatch } from '../../_helpers/must-match.validator';
 
 @Component({
-  selector: 'vamoretro-remind',
+  selector: 'fox-retro-remind',
   templateUrl: './remind.component.html',
-  styleUrls: ['./remind.component.scss']
+  styleUrls: ['./remind.component.scss'],
 })
 export class RemindComponent implements OnInit {
   remindForm: FormGroup;
@@ -22,20 +22,27 @@ export class RemindComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private toast: ToastService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.remindForm = this.fb.group({
-      email: ['allison.julio@hotmail.com', [Validators.required, Validators.email]],
-      code: ['', [Validators.required, Validators.pattern('[A-Z]{1,2}')]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: MustMatch('password', 'confirmPassword')
-    });
-
+    this.remindForm = this.fb.group(
+      {
+        email: [
+          'allison.julio@hotmail.com',
+          [Validators.required, Validators.email],
+        ],
+        code: ['', [Validators.required, Validators.pattern('[A-Z]{1,2}')]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: MustMatch('password', 'confirmPassword'),
+      }
+    );
   }
-  get r() { return this.remindForm.controls; }
+  get r() {
+    return this.remindForm.controls;
+  }
 
   public remind() {
     this.loading = true;
@@ -75,28 +82,30 @@ export class RemindComponent implements OnInit {
     }
   }
   private sentRemind() {
-    this.authService.remind(this.remindForm.value.email)
-      .subscribe(res => {
+    this.authService.remind(this.remindForm.value.email).subscribe(
+      (res) => {
         if (res.isValid) {
           this.toast.show(res.message, {
             delay: 3000,
             autohide: true,
-            type: 'success'
+            type: 'success',
           });
           this.isSentCode = true;
         }
 
         this.loading = false;
-      }, error => {
+      },
+      (error) => {
         const email = this.remindForm.controls.email;
         email.setErrors({ incorrect: true });
         this.toast.show(error, {
           delay: 3000,
           autohide: true,
-          type: 'error'
+          type: 'error',
         });
         this.submitted = true;
         this.loading = false;
-      });
+      }
+    );
   }
 }

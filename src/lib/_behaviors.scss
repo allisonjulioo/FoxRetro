@@ -1,4 +1,4 @@
-@import "./colors";
+@import './colors';
 
 $radius: 0.125rem;
 $radius-slim: 0.125rem;
@@ -41,7 +41,7 @@ $width: 48px;
     display: block;
   }
 }
-.full-width [selector="vamoretro-*"] {
+.full-width [selector='fox-retro-*'] {
   width: 100%;
 }
 .title {

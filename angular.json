@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "vamoretro": {
+    "fox-retro": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/vamoretro",
+            "outputPath": "dist/fox-retro",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,11 +75,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vamoretro:build"
+            "browserTarget": "fox-retro:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "vamoretro:build:production"
+              "browserTarget": "fox-retro:build:production"
             }
           },
           "host": "0.0.0.0",
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "vamoretro:build"
+            "browserTarget": "fox-retro:build"
           }
         },
         "test": {
@@ -103,9 +103,7 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -117,24 +115,23 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "vamoretro:serve"
+            "devServerTarget": "fox-retro:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "vamoretro:serve:production"
+              "devServerTarget": "fox-retro:serve:production"
             }
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "Vamo Retro"
 }

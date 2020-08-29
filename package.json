@@ -1,5 +1,5 @@
 {
-  "name": "vamoretro",
+  "name": "fox-retro",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
@@ -35,7 +35,7 @@
     "material-icons": "^0.3.1",
     "ng-chartjs": "^0.2.0",
     "ngx-color-picker": "^9.0.0",
-    "ngx-cookie-service": "^2.4.0",
+    "ngx-cookie-service": "^3.0.1",
     "ngx-device-detector": "^1.4.0",
     "nodemon": "^2.0.2",
     "rxjs": "~6.5.4",
