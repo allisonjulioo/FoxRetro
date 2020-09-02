@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://api-fox-retro.herokuapp.com/api",
-  translateUrl: "http://localhost:3030",
+  apiUrl: 'https://api-fox-retro.herokuapp.com/api',
+  translateUrl: 'http://localhost:3030',
 };
 
 /*
@@ -16,4 +16,3 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-
