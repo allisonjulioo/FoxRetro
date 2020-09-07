@@ -2,7 +2,7 @@
   <button
     *ngIf="device$.mobile"
     class="btn btn-icon btn-menu"
-    style="height: auto;"
+    style="height: auto"
     (click)="openMenu()"
   >
     <i class="material-icons text-white" *ngIf="!isOpened$">menu</i>
@@ -28,7 +28,7 @@
       *ngIf="!device$.mobile"
     >
       <button class="btn btn-tertiary" ngbDropdownToggle>
-        <avatar [dark]="true" [lg]="true" [name]="user.name"> </avatar>
+        <avatar [dark]="true" [lg]="true" [name]="user?.name"> </avatar>
       </button>
       <div
         ngbDropdownMenu
@@ -49,4 +49,4 @@
     </section>
   </section>
 </nav>
-<sub-nav *ngIf="!isKanban"></sub-nav>
+<sub-nav *ngIf="!isVisible"></sub-nav>

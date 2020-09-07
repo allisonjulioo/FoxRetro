@@ -47,7 +47,7 @@
           <h3 class="media-heading">{{ card.title }}</h3>
           <p>
             <i class="material-icons">date_range</i
-            >{{ card.created_at | date: "dd/MM/yyyy" }}
+            >{{ card.createdAt | date: 'dd/MM/yyyy' }}
           </p>
           <p class="badge badge-light" *ngIf="card.team">
             <i class="material-icons">people</i>

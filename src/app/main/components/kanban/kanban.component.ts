@@ -13,38 +13,38 @@ import { ModalNewCardComponent } from './../modal-new-card/modal-new-card.compon
   // tslint:disable-next-line: component-selector
   selector: 'kanban',
   templateUrl: './kanban.component.html',
-  styleUrls: ['./kanban.component.scss']
+  styleUrls: ['./kanban.component.scss'],
 })
-
 export class KanbanComponent implements OnInit, OnChanges, OnDestroy {
   @Input() columns: Array<Column>;
   public boardId: number = this.route.snapshot.params.id;
   public devices: Devices;
   public selectedColumn: Column;
-  public modalOptions =
-    {
-      centered: true,
-      windowClass: 'animated fadeIn',
-    };
+  public modalOptions = {
+    centered: true,
+    windowClass: 'animated fadeIn',
+  };
 
   constructor(
     private modalService: NgbModal,
     private confirm: ConfirmService,
     private route: ActivatedRoute,
     private store: Store<{ responsive: {} }>,
-    private columnService: ColumnsService) { }
+    private columnService: ColumnsService
+  ) {}
 
   ngOnInit(): void {
-    this.store.pipe(select('responsive'))
-      .subscribe((devices: Devices) => {
-        this.devices = devices;
-      });
+    this.store.pipe(select('responsive')).subscribe((devices: Devices) => {
+      this.devices = devices;
+    });
   }
   ngOnChanges(evt) {
     if (this.columns?.length && (this.devices.mobile || this.devices.tablet)) {
-      this.selectedColumn = this.columns[0]
+      this.selectedColumn = this.columns[0];
       if (!this.devices.desktop) {
-        document.querySelector('body').style.background = this.selectedColumn.color;
+        document.querySelector(
+          'body'
+        ).style.background = this.selectedColumn.color;
       }
     }
   }
@@ -54,7 +54,9 @@ export class KanbanComponent implements OnInit, OnChanges, OnDestroy {
   selectColumn(column: Column) {
     this.selectedColumn = column;
     if (!this.devices.desktop) {
-      document.querySelector('body').style.background = this.selectedColumn.color;
+      document.querySelector(
+        'body'
+      ).style.background = this.selectedColumn.color;
     }
   }
   public setColor(column: Column) {
@@ -65,41 +67,43 @@ export class KanbanComponent implements OnInit, OnChanges, OnDestroy {
   }
   widthColumn() {
     if (this.devices.mobile || this.devices.tablet) {
-      return `${(100 / this.columns.length)} '%'`
+      return `${100 / this.columns.length} '%'`;
     }
     return '100%';
   }
   public editColumn(column: Column, evt: string) {
     column.title = evt;
-    this.columnService.update(column)
-      .subscribe(res => {
-        if (res) {
-          this.store.dispatch(update())
-        }
-      });
+    this.columnService.update(column).subscribe((res) => {
+      if (res) {
+        this.store.dispatch(update());
+      }
+    });
   }
 
-  public deleteColumn(column) {
-    this.confirm.open(`Deseja excluir a coluna ${column.title}?`)
+  public deleteColumn(column: Column) {
+    this.confirm
+      .open(`Deseja excluir a coluna ${column.title}?`)
       .then((evt) => {
         if (evt) {
-          this.columnService.delete(column.id, column.board_id)
-            .subscribe((res: any) => {
-              this.store.dispatch(update());
-            });
+          this.columnService.delete(column.id).subscribe((res) => {
+            this.store.dispatch(update());
+          });
         }
       });
   }
 
   public addNewCard(column: Column) {
-    const modalRef = this.modalService.open(ModalNewCardComponent, this.modalOptions);
+    const modalRef = this.modalService.open(
+      ModalNewCardComponent,
+      this.modalOptions
+    );
     modalRef.componentInstance.column = column;
-    modalRef.result.then((result) => {
-      if (result) {
-        this.store.dispatch(update());
-      }
-    })
-      .catch(err => { });
+    modalRef.result
+      .then((result) => {
+        if (result) {
+          this.store.dispatch(update());
+        }
+      })
+      .catch((err) => {});
   }
 }
-

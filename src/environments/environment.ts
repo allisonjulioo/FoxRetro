@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api-fox-retro.herokuapp.com/api',
+  apiUrl: 'http://localhost:8080/api/v2',
   translateUrl: 'http://localhost:3030',
 };
 

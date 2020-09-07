@@ -1,10 +1,17 @@
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NgbAlertModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlertModule,
+  NgbPaginationModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -16,8 +23,10 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { BoardsPipe } from './filters/boards.pipe';
 import { MainModule } from './main/main.module';
+import { AuthGuard } from './services/auth/auth.guard';
 import { ErrorInterceptor } from './services/auth/error.interceptor';
 import { JwtInterceptor } from './services/auth/jwt.interceptor';
+import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 import { reducer as notification } from './store/reducer/notifications.reducer';
 import { reducer as responsive } from './store/reducer/screen.reducer';
 import { reducer as menu } from './store/reducer/sideMenu.reducer';
@@ -30,10 +39,6 @@ import { SkeletonModule } from './utils/skeleton/skeleton.module';
 import { ToastsModule } from './utils/toasts/toasts.module';
 import { ModalNewWordComponent } from './views/translate/moda-new-word/moda-new-word.component';
 import { TranslateComponent } from './views/translate/translate.component';
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -54,19 +59,21 @@ import { TranslateComponent } from './views/translate/translate.component';
     BrowserAnimationsModule,
     ToastsModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
     StoreModule.forRoot({
       update,
       responsive,
       menu,
-      notification
+      notification,
     }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     DeviceDetectorModule.forRoot(),
     NgbPaginationModule,
@@ -77,14 +84,18 @@ import { TranslateComponent } from './views/translate/translate.component';
   ],
   providers: [
     CookieService,
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-
-}
+export class AppModule {}
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }

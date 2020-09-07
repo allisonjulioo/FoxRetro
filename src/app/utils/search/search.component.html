@@ -1,6 +1,14 @@
-<section class="search" id="search">
-  <input type="text" class="form-control mr-4" placeholder="Pesquisar" />
+<form class="search" id="search" (submit)="onSubmit(text)">
+  <input
+    type="text"
+    class="form-control mr-4"
+    placeholder="Pesquisar"
+    name="value"
+    [(ngModel)]="text"
+    (ngModelChange)="onKeyPress(text)"
+    autocomplete="off"
+  />
   <button class="btn btn-icon btn-accent">
     <i class="material-icons">search</i>
   </button>
-</section>
+</form>

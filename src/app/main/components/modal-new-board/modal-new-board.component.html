@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    {{ board?.title ? "Editar Board" : "Novo Board" }}
+    {{ board?.title ? 'Editar Board' : 'Novo Board' }}
   </h4>
   <button
     type="button"
@@ -30,17 +30,17 @@
           type="text"
           minlength="1"
           class="form-control"
-          formControlName="user_votes"
-          [ngClass]="{ 'is-invalid': submitted && a.user_votes.errors }"
+          formControlName="limit_votes"
+          [ngClass]="{ 'is-invalid': submitted && a.limit_votes.errors }"
         />
       </label>
       <label for="" class="pre-label">
         <span>Time</span>
         <select name="" id="" class="form-control" formControlName="team_id">
           <option value="Pessoal">Pessoal</option>
-          <option [value]="team.id" *ngFor="let team of teams">{{
-            team.title
-          }}</option>
+          <option [value]="team.id" *ngFor="let team of teams">
+            {{ team.title }}
+          </option>
         </select>
       </label>
     </div>

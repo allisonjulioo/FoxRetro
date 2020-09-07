@@ -1,31 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
-import { AuthService } from './auth.service';
+import { CanActivate, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthGuard implements CanActivate {
-  user_id: number;
-  constructor(
-    private router: Router,
-    private auth: AuthService,
-    private cookie: CookieService,
-    private route: ActivatedRoute) {
+  token: string;
+  private currentToken$: BehaviorSubject<string> = new BehaviorSubject(null);
+  public currentToken = this.currentToken$.asObservable();
 
-    this.user_id = parseInt(this.cookie.get('uid'));
+  constructor(private cookieService: CookieService, private router: Router) {
+    this.token = this.cookieService.get('utok');
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log(this.user_id )
-    const currentUser = this.auth.currentUserValue;
-    if (this.user_id) {
-      this.router.navigate(['/boards'], { queryParams: { returnUrl: state.url } });
-      // authorised so return true
-      return true;
+  public async checkIfUserLogged(): Promise<void> {
+    this.token = this.getToken();
+    if (!this.token) {
+      this.cookieService.deleteAll();
+      this.router.navigate(['auth', 'login']);
     }
-
-    // not logged in so redirect to login page with the return url
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-    return false;
+  }
+  public getToken(): string {
+    const token = this.cookieService.get('utok');
+    this.currentToken$.next(token);
+    return token;
+  }
+  canActivate(): Observable<boolean> | boolean {
+    this.checkIfUserLogged();
+    return !!this.token;
   }
 }

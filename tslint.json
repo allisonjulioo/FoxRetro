@@ -10,7 +10,7 @@
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
     "directive-selector": [true, "attribute", "fox-retro", "camelCase"],
-    "component-selector": [true, "element", "fox-retro", "kebab-case"],
+    "component-selector": [false, "element", "fox-retro", "kebab-case"],
     "import-blacklist": [true, "rxjs/Rx"],
     "interface-name": false,
     "max-classes-per-file": false,

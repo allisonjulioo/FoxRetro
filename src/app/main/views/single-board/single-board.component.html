@@ -16,12 +16,12 @@
           [customClass]="devices.mobile || devices.tablet ? 'smaller' : ''"
           [loading]="loading"
           (click)="addColumn()"
-          *ngIf="board?.columns.length < 4"
+          *ngIf="board?.columns?.length < 4"
         >
           <i class="material-icons">add_circle_outline</i>
           <span>Nova coluna</span>
         </k-button>
-        <span *ngIf="board?.columns.length >= 4" class="center-flex mr-2">
+        <span *ngIf="board?.columns?.length >= 4" class="center-flex mr-2">
           Limite 4 colunas</span
         >
         <div
@@ -51,5 +51,5 @@
       </div>
     </div>
   </section>
-  <kanban [columns]="board?.columns"></kanban>
+  <kanban [columns]="columns"></kanban>
 </div>

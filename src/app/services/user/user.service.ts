@@ -1,30 +1,31 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { User } from '../../models/user/user';
-import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    return this.http.get<User[]>(`${environment.apiUrl}/get-users`);
   }
 
-  getById(id: number) {
-    return this.http.get(`${environment.apiUrl}/users/${id}`)
-      .pipe(map(res => res))
+  getById(id: string): Observable<User> {
+    return this.http
+      .get<User>(`${environment.apiUrl}/users/${id}`)
+      .pipe(map((res) => res));
   }
 
-  register(user: User) {
-    return this.http.post(`${environment.apiUrl}/users/register`, user);
+  register(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/users/register`, user);
   }
 
-  delete(id: number) {
-    return this.http.delete(`${environment.apiUrl}/users/${id}`);
+  delete(id: string): Observable<User> {
+    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`);
   }
 }

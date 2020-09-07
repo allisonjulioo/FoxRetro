@@ -37,9 +37,9 @@
       </div>
       <div class="footer center-flex spaced">
         <avatar
-          [name]="card.user.name"
+          [name]="card?.user?.name"
           [full]="true"
-          [role]="card.created_at | date: 'dd MMM - h:mm'"
+          [role]="card.createdAt | date: 'dd MMM - h:mm'"
           [color]="color"
         ></avatar>
         <div class="center-flex">
@@ -50,7 +50,7 @@
           >
             <i class="material-icons mr-2">favorite</i>
           </button>
-          <span> {{ card.likes || 0 }}</span>
+          <span> {{ card?.likes || 0 }}</span>
         </div>
       </div>
     </div>

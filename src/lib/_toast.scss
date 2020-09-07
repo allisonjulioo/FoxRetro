@@ -1,7 +1,7 @@
-@import "./colors";
-@import "./shadows";
-@import "./behaviors";
-@import "./typography";
+@import './colors';
+@import './shadows';
+@import './behaviors';
+@import './typography';
 .toast {
   background: $white;
   padding: 10px;
@@ -29,6 +29,7 @@
   .toast-body {
     padding: 8px 0.75rem;
     line-height: 1.4;
+    word-break: break-word;
   }
   .btn {
     height: auto;

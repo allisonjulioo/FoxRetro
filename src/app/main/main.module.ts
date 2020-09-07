@@ -3,12 +3,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NgbAlertModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlertModule,
+  NgbModule,
+  NgbPaginationModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { NgChartjsModule } from 'ng-chartjs';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { DeviceDetectorModule, DeviceDetectorService } from 'ngx-device-detector';
+import {
+  DeviceDetectorModule,
+  DeviceDetectorService,
+} from 'ngx-device-detector';
 import { environment } from '../../environments/environment';
 import { ColorsDirective } from '../directives/colors.directive';
+import { AuthGuard } from '../services/auth/auth.guard';
 import { AvatarModule } from '../utils/avatar/avatar.module';
 import { InlineEditorModule } from '../utils/inline-editor/inline-editor.module';
 import { SkeletonModule } from '../utils/skeleton/skeleton.module';
@@ -34,9 +42,7 @@ import { BoardsComponent } from './views/boards/boards.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { SingleBoardComponent } from './views/single-board/single-board.component';
 import { TeamsComponent } from './views/teams/teams.component';
-
-
-
+import { SingleTeamComponent } from '../views/single-team/single-team.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +64,7 @@ import { TeamsComponent } from './views/teams/teams.component';
     SideNotificationComponent,
     TeamsCardComponent,
     ModalNewTeamComponent,
+    SingleTeamComponent,
   ],
   imports: [
     AvatarModule,
@@ -71,18 +78,18 @@ import { TeamsComponent } from './views/teams/teams.component';
     ColorPickerModule,
     MainRoutingModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
     FormsModule,
     ReactiveFormsModule,
     DeviceDetectorModule,
-    InlineEditorModule
+    InlineEditorModule,
   ],
-  providers: [
-    DeviceDetectorService,
-  ],
-  bootstrap: [MainComponent]
+  providers: [AuthGuard, DeviceDetectorService],
+  bootstrap: [MainComponent],
 })
-export class MainModule { }
+export class MainModule {}

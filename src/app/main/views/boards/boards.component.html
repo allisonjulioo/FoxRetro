@@ -1,7 +1,7 @@
 <div class="container-fluid" id="boards">
   <section>
     <div class="center-flex title spaced block-mobile">
-      <search></search>
+      <search (search)="onSubmitSearch($event)"></search>
       <button
         primary="background"
         class="btn"
@@ -9,7 +9,7 @@
         [ngClass]="[devices.desktop ? 'icon floating' : 'btn-icon btn-add']"
       >
         <i class="material-icons text-white m-0">{{
-          devices.desktop ? "add_circle_outline" : "add"
+          devices.desktop ? 'add_circle_outline' : 'add'
         }}</i>
         <span [hidden]="!devices.desktop">Novo board</span>
         <span></span>

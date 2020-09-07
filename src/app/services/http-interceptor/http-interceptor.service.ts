@@ -1,26 +1,56 @@
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, throwError } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { catchError, map } from 'rxjs/operators';
+import { ToastService } from 'src/app/services/toasts/toasts.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class HttpInterceptorService {
+export class HttpInterceptorService implements HttpInterceptor {
+  constructor(
+    private cookieService: CookieService,
+    private toastService: ToastService
+  ) {}
 
-  constructor(private authenticationService: AuthService) { }
-
-  public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add authorization header with jwt token if available
-    let currentUser = this.authenticationService.currentUserValue;
-    if (currentUser && currentUser.token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`
+  public intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const clonedRequest = request.clone({
+      setHeaders: {
+        'x-access-token': this.cookieService.get('utok'),
+        uid: this.cookieService.get('uid'),
+      },
+    });
+    return next.handle(clonedRequest).pipe(
+      map((res: HttpResponse<any>) => {
+        const body = res.body;
+        if (body) {
         }
-      });
-    }
-
-    return next.handle(request);
+        if (res.status === 401) {
+          this.cookieService.deleteAll();
+          console.log(res.status);
+        }
+        return res;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.toastService.show(error.message, {
+          delay: 3000,
+          autohide: true,
+          type: 'error',
+        });
+        console.log('error ', error);
+        return throwError(error);
+      })
+    );
   }
 }

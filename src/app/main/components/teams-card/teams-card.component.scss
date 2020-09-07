@@ -1,4 +1,4 @@
-@import "../../../../styles";
+@import '../../../../styles';
 
 :hostteams-card {
   #card {
@@ -10,6 +10,7 @@
       overflow: auto;
     }
     .card {
+      max-width: 300px;
       @media (max-width: 981px) {
         max-width: 100%;
         margin: 12px 0;

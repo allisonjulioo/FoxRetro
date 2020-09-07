@@ -1,7 +1,7 @@
-@import "./colors";
-@import "./behaviors";
-@import "./shadows";
-@import "./typography";
+@import './colors';
+@import './behaviors';
+@import './shadows';
+@import './typography';
 
 .form-control {
   height: $height;
@@ -42,7 +42,7 @@
     margin: 5px 0 14px;
     display: block;
     float: right;
-    color: $accent-darker;
+    color: lighten($dark, 10%);
     position: absolute;
     right: 12px;
     top: 30px;

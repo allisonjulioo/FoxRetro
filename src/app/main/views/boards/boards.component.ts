@@ -13,7 +13,7 @@ import { BoardsService } from './../../../services/boards/boards.service';
   selector: 'boards',
   templateUrl: './boards.component.html',
   styles: [':host { width: 100%;}'],
-  styleUrls: ['./boards.component.scss']
+  styleUrls: ['./boards.component.scss'],
 })
 export class BoardsComponent implements OnInit {
   public page = 1;
@@ -21,11 +21,10 @@ export class BoardsComponent implements OnInit {
   public devices: Devices;
   public attempt = 0;
   public loading = true;
-  public modalOptions =
-    {
-      windowClass: 'animated fadeIn faster',
-      backdropClass: 'modal-primary-backdrop',
-    };
+  public modalOptions = {
+    windowClass: 'animated fadeIn faster',
+    backdropClass: 'modal-primary-backdrop',
+  };
 
   constructor(
     private modalService: NgbModal,
@@ -33,15 +32,14 @@ export class BoardsComponent implements OnInit {
     public toastService: ToastService,
     private boardService: BoardsService,
     private toast: ToastService,
-    private store: Store<{ responsive: {} }>) { }
-
+    private store: Store<{ responsive: {} }>
+  ) {}
 
   ngOnInit(): void {
     this.getBoards();
-    this.store.pipe(select('responsive'))
-      .subscribe((devices: Devices) => {
-        this.devices = devices;
-      });
+    this.store.pipe(select('responsive')).subscribe((devices: Devices) => {
+      this.devices = devices;
+    });
   }
 
   public reloadBoards() {
@@ -49,7 +47,7 @@ export class BoardsComponent implements OnInit {
     this.getBoards();
   }
   private async getBoards(): Promise<void> {
-    this.cards = await this.boardService.getAll().toPromise();
+    this.cards = await this.boardService.get().toPromise();
     this.loading = this.cards.length === 0;
     if (!this.cards.length && this.attempt <= 2) {
       setTimeout(() => {
@@ -64,35 +62,48 @@ export class BoardsComponent implements OnInit {
     this.openModalBoard(board);
   }
   public deleteBoard(board: Boards) {
-    this.confirm.open(`Deseja excluir o board ${board.title}?`)
-      .then((evt) => {
-        if (evt) {
-          this.boardService.delete(board.id)
-            .pipe(first())
-            .subscribe(() => this.onSubmitted('success', 'Board excluido'));
-        }
-      });
+    this.confirm.open(`Deseja excluir o board ${board.title}?`).then((evt) => {
+      if (evt) {
+        this.boardService
+          .delete(board.id)
+          .pipe(first())
+          .subscribe(() => this.onSubmitted('success', 'Board excluido'));
+      }
+    });
   }
   private onSubmitted(type: string, message: string) {
     this.toast.show(message, {
       delay: 2500,
       autohide: true,
-      type
+      type,
     });
     this.getBoards();
   }
   public openModalBoard(board?: Boards) {
-    const modalRef = this.modalService.open(ModalNewBoardComponent, this.modalOptions);
+    const modalRef = this.modalService.open(
+      ModalNewBoardComponent,
+      this.modalOptions
+    );
     modalRef.componentInstance.board = board;
-    modalRef.result.then((result) => {
-      if (result.id) {
-        this.boardService.update(result)
-          .pipe(first())
-          .subscribe(res => this.onSubmitted('success', 'Board atualizado'));
-      }
-      this.getBoards();
-    })
-      .catch(err => console.log(err));
+    modalRef.result
+      .then((result) => {
+        if (result.id) {
+          this.boardService
+            .update(result)
+            .pipe(first())
+            .subscribe((res) =>
+              this.onSubmitted('success', 'Board atualizado')
+            );
+        }
+        this.getBoards();
+      })
+      .catch((err) => console.log(err));
   }
-
+  public onSubmitSearch(value: string) {
+    const data = {
+      key: 'title',
+      value,
+    };
+    this.boardService.search(data).subscribe((cards) => (this.cards = cards));
+  }
 }

@@ -4,7 +4,7 @@ import { Teams } from '../teams/teams';
 export class Boards {
   id: number;
   title: string;
-  created_at: string;
+  createdAt: string;
   columns: Column[];
   user_id: number;
   user_votes: number;

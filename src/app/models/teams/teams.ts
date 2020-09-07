@@ -7,6 +7,6 @@ export class Teams {
   logo: string;
   enabled: boolean;
   user_id: boolean;
-  created_at: string;
+  createdAt: string;
   user: User;
 }
