@@ -2,19 +2,19 @@
   <div class="container-fluid">
     <ul role="tablist" class="justify-content-start nav nav-tabs">
       <li class="nav-item" routerLinkActive="active">
-        <i class="material-icons" *ngIf="!device.desktop">dashboard</i>
+        <i class="material-icons">dashboard</i>
         <a class="nav-link" id="boards" [routerLink]="['/main/boards']"
           >Meus boards</a
         >
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <i class="material-icons" *ngIf="!device.desktop">people</i>
+        <i class="material-icons">people</i>
         <a class="nav-link" id="teams" [routerLink]="['/main/teams']"
           >Meus times</a
         >
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <i class="material-icons" *ngIf="!device.desktop">bar_chart</i>
+        <i class="material-icons">bar_chart</i>
         <a class="nav-link" id="analytics" [routerLink]="['/main/analytics']"
           >Meus Analitics</a
         >
