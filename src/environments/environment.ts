@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api/v2',
+  apiUrl: 'https://api-fox-retro.netlify.app/api/v2',
   translateUrl: 'http://localhost:3030',
 };
 
