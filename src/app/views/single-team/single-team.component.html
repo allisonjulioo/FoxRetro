@@ -1,0 +1,15 @@
+<div class="container-fluid mt-3" id="singleTeams">
+  <section>
+    <div class="center-flex title spaced">
+      <h3>
+        <a class="btn btn-icon btn-link back" routerLink="/main/teams">
+          <i class="material-icons">keyboard_backspace</i></a
+        >
+        <inline-editor
+          [data]="team?.title"
+          (focusOut)="editTeam(team, $event)"
+        ></inline-editor>
+      </h3>
+    </div>
+  </section>
+</div>
