@@ -36,7 +36,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         const body = res.body;
         if (body) {
         }
-        if (res.status === 401) {
+        if (res.status === 401 || res.status === 0) {
           this.cookieService.deleteAll();
           console.log(res.status);
         }
@@ -48,6 +48,7 @@ export class HttpInterceptorService implements HttpInterceptor {
           autohide: true,
           type: 'error',
         });
+        this.cookieService.deleteAll();
         console.log('error ', error);
         return throwError(error);
       })
