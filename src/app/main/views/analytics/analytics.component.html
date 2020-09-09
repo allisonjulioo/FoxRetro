@@ -1,12 +1,64 @@
-<div class="container" id="analytics">
+<div class="container-fluid" id="analytics">
   <section>
     <div class="center-flex title spaced block-mobile">
       <h3>Analitcs</h3>
-      <span>Perspectiva</span>
-    </div> 
-    <canvas ngChartjs [datasets]="lineChartData" [labels]="lineChartLabels"
-          [options]="lineChartOptions" [legend]="lineChartLegend" [chartType]="lineChartType"
-          [inlinePlugins]="inlinePlugin">
-  </canvas>
+      <ul role="tablist" class="justify-content-start nav nav-tabs">
+        <li routerlinkactive="active" class="nav-item">
+          <a id="boards" class="nav-link">Meus boards</a>
+        </li>
+        <li routerlinkactive="active" class="nav-item">
+          <a id="boards" class="nav-link">Meus boards</a>
+        </li>
+        <li routerlinkactive="active" class="nav-item">
+          <a id="boards" class="nav-link">Meus boards</a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex">
+      <div class="card w-100">
+        <div class="card-body">
+          <h4>Boards quantidade</h4>
+          <canvas
+            ngChartjs
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [inlinePlugins]="inlinePlugin"
+          >
+          </canvas>
+        </div>
+      </div>
+      <div class="card w-100 mr-0">
+        <div class="card-body">
+          <h4>Cards quantidade</h4>
+          <canvas
+            ngChartjs
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [inlinePlugins]="inlinePlugin"
+          >
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="card w-100 mr-0">
+        <div class="card-body">
+          <h4>Cloud words</h4>
+          <ng-tag-cloud
+            class="mx-auto"
+            [width]="600"
+            style="width: 100%"
+            [data]="words"
+            [zoomOnHover]="zoomOnHoverOptions"
+          ></ng-tag-cloud>
+        </div>
+      </div>
+    </div>
   </section>
 </div>

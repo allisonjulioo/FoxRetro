@@ -8,6 +8,7 @@ import {
   NgbModule,
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { TagCloudModule } from 'angular-tag-cloud-module';
 import { NgChartjsModule } from 'ng-chartjs';
 import { ColorPickerModule } from 'ngx-color-picker';
 import {
@@ -20,6 +21,7 @@ import { AuthGuard } from '../services/auth/auth.guard';
 import { AvatarModule } from '../utils/avatar/avatar.module';
 import { InlineEditorModule } from '../utils/inline-editor/inline-editor.module';
 import { SkeletonModule } from '../utils/skeleton/skeleton.module';
+import { SingleTeamComponent } from '../views/single-team/single-team.component';
 import { ButtonModule } from './../utils/button/button.module';
 import { ConfirmModule } from './../utils/confirm/confirm.module';
 import { SearchModule } from './../utils/search/search.module';
@@ -42,7 +44,6 @@ import { BoardsComponent } from './views/boards/boards.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { SingleBoardComponent } from './views/single-board/single-board.component';
 import { TeamsComponent } from './views/teams/teams.component';
-import { SingleTeamComponent } from '../views/single-team/single-team.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { SingleTeamComponent } from '../views/single-team/single-team.component'
     ToastsModule,
     SearchModule,
     ButtonModule,
+    TagCloudModule,
     SkeletonModule,
     ColorPickerModule,
     MainRoutingModule,
