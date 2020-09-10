@@ -18,44 +18,32 @@ export class AnalyticsComponent implements OnInit {
   words: CloudData[] = [];
   lineChartData: ChartDataSets[] = [
     {
-      label: 'My First dataset',
+      label: '',
       lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
       borderCapStyle: 'butt',
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
       pointBackgroundColor: '#fff',
       pointBorderWidth: 1,
       pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 81, 80, 81, 56, 55, 40],
+      data: [],
     },
   ];
-  lineChartLabels: string[] = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-  ];
+  lineChartLabels: string[] = [];
   lineChartOptions: any = {
     responsive: true,
   };
   lineChartLegend = true;
-  lineChartType = 'line';
-  inlinePlugin: any;
-  textPlugin: any;
+  lineChartType = 'bar';
 
   ngOnInit() {
     this.analyticsService.getCloudWords().subscribe((words) => {
       this.words = words;
+    });
+    this.analyticsService.getChartLine().subscribe((lines) => {
+      this.lineChartLabels = lines.data.labels;
+      this.lineChartData = lines.data.data;
     });
   }
 }

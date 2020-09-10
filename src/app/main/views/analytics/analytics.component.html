@@ -3,13 +3,7 @@
     <div class="center-flex title spaced block-mobile">
       <h3>Analitcs</h3>
       <ul role="tablist" class="justify-content-start nav nav-tabs">
-        <li routerlinkactive="active" class="nav-item">
-          <a id="boards" class="nav-link">Meus boards</a>
-        </li>
-        <li routerlinkactive="active" class="nav-item">
-          <a id="boards" class="nav-link">Meus boards</a>
-        </li>
-        <li routerlinkactive="active" class="nav-item">
+        <li routerlinkactive="active" class="nav-item btn-secondary btn btn-sm">
           <a id="boards" class="nav-link">Meus boards</a>
         </li>
       </ul>
@@ -17,7 +11,6 @@
     <div class="d-flex">
       <div class="card w-100">
         <div class="card-body">
-          <h4>Boards quantidade</h4>
           <canvas
             ngChartjs
             [datasets]="lineChartData"
@@ -25,22 +18,19 @@
             [options]="lineChartOptions"
             [legend]="lineChartLegend"
             [chartType]="lineChartType"
-            [inlinePlugins]="inlinePlugin"
           >
           </canvas>
         </div>
       </div>
       <div class="card w-100 mr-0">
         <div class="card-body">
-          <h4>Cards quantidade</h4>
           <canvas
             ngChartjs
             [datasets]="lineChartData"
             [labels]="lineChartLabels"
             [options]="lineChartOptions"
             [legend]="lineChartLegend"
-            [chartType]="lineChartType"
-            [inlinePlugins]="inlinePlugin"
+            [chartType]="'line'"
           >
           </canvas>
         </div>
