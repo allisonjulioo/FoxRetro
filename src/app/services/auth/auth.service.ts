@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   public login(data: Auth): Observable<Auth> {
-    return this.http.post<Auth & User>(`${environment.apiUrl}/users/auth`, { ...data })
+    return this.http.post<Auth & User>(`${environment.apiUrl}/authentication`, { ...data })
       .pipe(map(user => {
         this.cookie.set('utok', user.token, 3600);
         this.currentUserSubject.next(user);
@@ -35,11 +35,11 @@ export class AuthService {
       }));
   }
   public register(user: User): Observable<Auth> {
-    return this.http.post<Auth>(`${environment.apiUrl}/users/new`, { ...user })
+    return this.http.post<Auth>(`${environment.apiUrl}/register`, { ...user })
       .pipe(map((data: Auth) => data));
   }
   public remind(email: string): Observable<Auth> {
-    return this.http.post<Auth>(`${environment.apiUrl}/users/remind`, { email })
+    return this.http.post<Auth>(`${environment.apiUrl}/remind`, { email })
       .pipe(map((data: Auth) => data));
   }
 
